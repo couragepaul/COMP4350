@@ -1,0 +1,32 @@
+Thursday Jan 14
+- Meeting for an hour in person
+	- All members were present
+	- Meeting was focused on brainstorming and discussing possible ideas for a project
+	- Apartment planner app chosen to be the topic of choice
+		- tenant 
+
+Saturday and Sunday Jan 16-17
+- Various times over the weekend to informally discuss Itr 0 online
+- What kind of features would be required?
+	- What kinds of user stories would these features require?
+		- Manager can send messages to specific/all residents that they are responsible for -- 1
+			- Indication of urgency of the message sent
+			- Residents have the ability to mark messages as read (manager can see this as well)
+		- Public Bulletin Board that all residents can see -- 2
+			- Notification to users (can be restricted)
+			- Ability to sort the bulletin 
+		- Scheduler that allows for specific events to be tracked -- 3
+			- Ability to check status of rent
+
+Tuesday Jan 19
+- Meeting for an hour in person
+	- Discuss final user stories and any other things that are needed for the Iteration 0 handin
+	- Any other problems or things to fix
+	- Technology choices discussed and decided on:
+		- Server Managing - Apache
+		- Mobile Development - Java
+		- Web Language - bootstrap
+		- DB - NoSql DB
+		- Continuous Integration - Maven
+		- Back-end - Django (Python)
+		
