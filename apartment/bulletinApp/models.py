@@ -14,7 +14,7 @@ class BulletinReply(models.Model):
 	reply_text = models.CharField(max_length=200)
 	pub_date = models.DateTimeField('date published')
 	posted_by = models.CharField(max_length=100)
-	replied_to = models.BulletinPost()
+	replied_to = models.ForeignKey(BulletinPost, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return self.reply_text
