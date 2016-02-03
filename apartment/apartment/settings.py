@@ -37,8 +37,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bulletinApp.apps.BulletinappConfig',
-    'messagesApp.apps.MessagesappConfig',
 
 ]
 
@@ -58,7 +56,9 @@ ROOT_URLCONF = 'apartment.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+		    os.path.join(BASE_DIR,'apartmentApp/templates/'),
+		],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
