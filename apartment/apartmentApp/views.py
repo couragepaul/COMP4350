@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.template import loader
 
 
@@ -15,15 +16,16 @@ def loggedin(request):
     if user is not None:
         login(request, user)
         return redirect('home')
-    return redirect('invalidLogin')
+    return redirect(invalidLogin)
+
+def logoutUser(request):
+    logout(request)
+    return redirect(index)
 
 def invalidLogin(request):
     html = "Invalid user credentials"
     return HttpResponse(html)
 
 def home(request):
-    if not request.user.is_authenticated():
-        return redirect('index')
-    html = "Welcome to the Apartment Management Application"
-    return HttpResponse(html)
+    return render(request,'home.html')
 
