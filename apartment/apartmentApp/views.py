@@ -1,17 +1,13 @@
-from django.shortcuts import render, redirect
-
-from django.http import HttpResponse, HttpResponseRedirect
-from django.core.urlresolvers import reverse
-from django.contrib.auth import authenticate
-from django.template import loader
 import boto3
 import json
-
 import datetime
 
+from django.shortcuts import render
+from django.shortcuts import redirect
+from django.http import HttpResponse
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-
-
+from django.contrib.auth.decorators import login_required
 
 aws_access_key_id = "AKIAIGLM2CBBY5EOMXYQ"
 aws_secret_access_key = "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"
@@ -24,15 +20,6 @@ session = boto3.setup_default_session(
 dynamodb = boto3.resource('dynamodb', region_name='us-west-2', endpoint_url="https://dynamodb.us-west-2.amazonaws.com")
 
 table = dynamodb.Table("Message")
-
-from django.shortcuts import render
-from django.shortcuts import redirect
-from django.http import HttpResponse
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-from django.template import loader
-
 
 def index(request):
     return render(request,'login.html')
@@ -80,9 +67,15 @@ def sendMessage(request):
         message_id = 1001
         table.put_item(
 	        Item={
-		    'message_id' : message_id,
-		    'timestamp' : pub_date,
-		    'content' : {"message_text":message_text, "urgency":urgency, "sent_to":sent_to, "sent_by":"Manager"}
+		        'message_id' : message_id,
+		        'timestamp' : pub_date,
+		        'content' : {
+                    "message_text":message_text,
+                    "urgency":urgency,
+                    "sent_to":sent_to,
+                    "sent_by":"Manager",
+                    "has_read":False
+                }
 	        }
         )
         return redirect(sentMessageView)

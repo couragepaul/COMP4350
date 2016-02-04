@@ -1,0 +1,7 @@
+<form action="sendMessage" method="post">
+    {% csrf_token %}
+    <input type="text" name="send_to" id="send_to" value="send_to" /> <br>
+	<input type="text" name="message" id="message" value="message" /> <br>
+    <input type="number" name="urgency" id="urgency" value="urgency" /> <br>
+    <input type="submit" value="Create" />
+</form>
