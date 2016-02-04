@@ -27,6 +27,7 @@ class Message(models.Model):
 	sent_by = models.CharField(max_length=50)
 	sent_to = models.CharField(max_length=50)
 	urgency = models.IntegerField()
+	has_read = models.BooleanField()
 
 	def __str__(self):
 		return self.message_text
