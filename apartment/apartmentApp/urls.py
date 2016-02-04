@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-    url(r'^create/$', views.createMessageView.as_view(), name='createMessageView'),
-    url(r'^result/$', views.sentMessageView.as_view(), name='sentMessageView'),
-    url(r'^send/$', views.sendMessage, name='sendMessage'),
+    url(r'^createMessageView', views.createMessageView, name='createMessageView'),
+    url(r'^sentMessageView', views.sentMessageView, name='sentMessageView'),
+    url(r'^sendMessage', views.sendMessage, name='sendMessage'),
+    url(r'^errorMessage', views.errorMessage, name='errorMessage'),
 ]

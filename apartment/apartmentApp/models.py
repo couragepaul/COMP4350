@@ -23,8 +23,8 @@ class BulletinReply(models.Model):
 class Message(models.Model):
 	message_text = models.CharField(max_length=200)
 	pub_date = models.DateTimeField('date published')
-	sent_by = userModels.UserManager()
-	sent_to = models.CharField(max_length=200)
+	sent_by = models.CharField(max_length=50)
+	sent_to = models.CharField(max_length=50)
 	urgency = models.IntegerField()
 
 	def __str__(self):
