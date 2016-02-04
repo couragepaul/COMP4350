@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.template import loader
 
@@ -28,4 +29,8 @@ def invalidLogin(request):
 
 def home(request):
     return render(request,'home.html')
+
+def createUser(request):
+    user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
+    return render(request, 'home.html')
 
