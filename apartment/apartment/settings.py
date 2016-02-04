@@ -37,8 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'bulletinApp.apps.BulletinappConfig',
-    'messagesApp.apps.MessagesappConfig',
+    'apartmentApp.apps.ApartmentappConfig',
 
 ]
 
