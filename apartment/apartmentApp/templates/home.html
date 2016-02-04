@@ -1,0 +1,23 @@
+<h1>Welcome to the Apartment Management Application!</h1>
+<BR>
+<form action="logoutUser" method="get">
+    <input type="submit" value="Log out"/>
+</form>
+
+<BR><BR>
+
+<form action="createUser" method="post">
+{% csrf_token %}
+    <input type="text" name="username" id="username" value="username" />
+	<input type="text" name="email" id="email" value="email" />
+	<input type="password" name="password" id="password" value="password" />
+	<input type="submit" value="Create User" />
+</form>
+
+<BR><BR>
+
+<form action="deleteUser" method="post">
+{% csrf_token %}
+    <input type="text" name="username" id="username" value="username" />
+	<input type="submit" value="Delete User" />
+</form>

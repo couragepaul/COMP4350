@@ -8,4 +8,10 @@ urlpatterns = [
     url(r'^sentMessageView', views.sentMessageView, name='sentMessageView'),
     url(r'^sendMessage', views.sendMessage, name='sendMessage'),
     url(r'^errorMessage', views.errorMessage, name='errorMessage'),
+	url(r'^loggedin', views.loggedin, name='loggedin'),
+    url(r'^home', views.home, name='home'),
+	url(r'^invalidLogin', views.invalidLogin, name='invalidLogin'),
+	url(r'^logoutUser', views.logoutUser, name='logoutUser'),
+    url(r'^createUser', views.createUser, name='createUser'),
+	url(r'^deleteUser', views.deleteUser, name='deleteUser'),
 ]
