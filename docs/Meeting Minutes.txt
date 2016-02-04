@@ -19,6 +19,7 @@ Saturday and Sunday Jan 16-17
 			- Ability to check status of rent
 
 Tuesday Jan 19
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Cao Qing, Courage Paul
 - Meeting for an hour in person
 	- Discuss final user stories and any other things that are needed for the Iteration 0 handin
 	- Any other problems or things to fix
@@ -29,4 +30,55 @@ Tuesday Jan 19
 		- DB - NoSql DB
 		- Continuous Integration - Maven
 		- Back-end - Django (Python)
-		
+
+
+Tuesday Jan 26
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Cao Qing, Courage Paul
+- Meeting for Iteration 1
+	- Need to implement back-end
+		- Django
+		- send request to server and translate to database commands
+		- Database - Nosql (cause of amazon) -- Amazon 
+			- Tim will look into getting it setup
+			- What are we storing
+				- User accounts (resident and manager) -- Contact
+					- room number
+					- name
+					- phone number
+					- emergency contact
+					- email
+					- etc.
+					- Also account details for manager
+				- Bulletin postings
+					- name of poster
+					- actual post text
+					- something to connect thing?!?! id 
+				- Calendar events
+				- Messaging - manager to residents
+					- send id, recieve id, timestamp, message
+
+	- host local webserver
+
+Thursday Jan 28
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Cao Qing, Courage Paul
+- Meeting for Iteration 1
+	- anyone who needs to learn the languages and technologies will learn it over the next couple of days
+	- anyone who already is familiar with the languages will set the base foundations for the application
+	- discussions about what priorities are for the foundation to get everything working
+
+
+Tuesday Feb 2
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Cao Qing, Courage Paul
+- Meeting for Iteration 1 
+	- review over iteration 1 requirements
+	- discussion of what user stories need to be done by the priorities in Itr0
+		- which user stories are we doing this iteration
+			- User stories that relate to messaging (not including the bulletin board)
+				- multiple messages will be divvied up to single messages by the server
+				- Messaging - manager to residents
+					- send id, recieve id, timestamp, messages
+			- User accounts related to the messaging 
+			- testing for each of these stories
+	- hardware architecture drawing
+		- decision to use UML diagrams to draw the architecture
+
