@@ -4,27 +4,6 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate
 from django.template import loader
-import boto3
-import json
-
-import datetime
-
-from django.contrib.auth.models import User
-
-
-
-aws_access_key_id = "AKIAIGLM2CBBY5EOMXYQ"
-aws_secret_access_key = "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"
-
-session = boto3.setup_default_session(
-	aws_access_key_id=aws_access_key_id,
-	aws_secret_access_key=aws_secret_access_key
-)
-
-dynamodb = boto3.resource('dynamodb', region_name='us-west-2', endpoint_url="https://dynamodb.us-west-2.amazonaws.com")
-
-table = dynamodb.Table("Message")
-
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.http import HttpResponse
@@ -78,13 +57,6 @@ def sendMessage(request):
     try:
         sent_to = User.objects.get(username = username)
         message_id = 1001
-        table.put_item(
-	        Item={
-		    'message_id' : message_id,
-		    'timestamp' : pub_date,
-		    'content' : {"message_text":message_text, "urgency":urgency, "sent_to":sent_to, "sent_by":"Manager"}
-	        }
-        )
         return redirect(sentMessageView)
     except:
         return redirect(errorMessage)
