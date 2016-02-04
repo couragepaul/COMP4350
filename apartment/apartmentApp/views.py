@@ -33,4 +33,9 @@ def home(request):
 def createUser(request):
     user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
     return render(request, 'home.html')
+	
+def deleteUser(request):
+    user = User.objects.get(username=request.POST['username'])
+    user.delete()
+    return render(request, 'home.html')
 
