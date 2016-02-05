@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Message
 
 class UserTestCase(TestCase):
 
@@ -16,8 +17,8 @@ class UserTestCase(TestCase):
 
 class MessageTestCase(TestCase):
 
-    def test_message_send(self):
-        message_id = 1001
+    def test_message_create(self):
+        message_id = 0
         timestamp = datetime.datetime.now()
         message_text = 'Hello, tenant'
         urgency = 1
@@ -27,8 +28,14 @@ class MessageTestCase(TestCase):
         message = Message.objects.create_message(message_id,timestamp,message_text,urgency,sent_to,sent_by,has_read)
         self.assertTrue(Message.objects.get(message_id = message_id))
 
+    def test_message_mark(self):
+        message = dynamo.Dynamo().get_message_by_id(message_id=0)
+        message[0]['read'] = True
+        dynamo.Dynamo().update_message(message[0])
+        self.assertTrue(Message.objects.get(read=true))
+
     def test_message_delete(self):
-        message_id = 1001
+        message_id = 0
         timestamp = datetime.datetime.now()
         message_text = 'Hello, tenant'
         urgency = 1
