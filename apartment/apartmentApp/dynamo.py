@@ -5,6 +5,7 @@ class Dynamo:
     # http://boto3.readthedocs.org/en/latest/reference/services/dynamodb.html
     __aws_access_key_id = 'AKIAIGLM2CBBY5EOMXYQ'
     __aws_secret_access_key = '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'
+    __message_id = 1000
 
     def __init__(self):
         boto3.setup_default_session(
@@ -20,8 +21,9 @@ class Dynamo:
 
     def send_message(self, message):
         table = self.dynamodb.Table('Message')
-
-        response = table.put_item(data=message)
+        message['message_id'] = self.__message_id
+        self.__message_id += 1
+        response = table.put_item(Item=message)
         print(response)
 
     def get_message_by_recipient(self, recipient):
