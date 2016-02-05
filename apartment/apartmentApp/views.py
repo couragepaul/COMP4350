@@ -97,6 +97,7 @@ def markAsRead(request, message_id):
     message = dynamo.Dynamo().get_message_by_id(message_id)
     message[0]['read'] = True
     dynamo.Dynamo().update_message(message[0])
-    return render(request, 'home.html')
+    html = "message has been marked as read"
+    return HttpResponse(html)
 
 

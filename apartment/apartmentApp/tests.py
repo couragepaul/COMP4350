@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from .models import Message
+from . import dynamo
+import boto3
 import datetime
 
 class UserTestCase(TestCase):
@@ -29,20 +31,20 @@ class MessageTestCase(TestCase):
         message = Message(message_id=message_id,pub_date=timestamp,message_text=message_text,urgency=urgency,
                           sent_to=sent_to,sent_by=sent_by,has_read=has_read)
         message.save()
+        testMessage = Message.objects.get(message_id = message_id)
 
-        self.assertTrue(Message.objects.get(message_id = message_id))
-        self.assertTrue(Message.objects.get(pub_date = timestamp))
-        self.assertTrue(Message.objects.get(message_text = message_text))
-        self.assertTrue(Message.objects.get(urgency = urgency))
-        self.assertTrue(Message.objects.get(sent_to = sent_to))
-        self.assertTrue(Message.objects.get(sent_by = sent_by))
-        self.assertTrue(Message.objects.get(has_read = has_read))
+        self.assertTrue(testMessage.message_id==message_id)
+        self.assertTrue(testMessage.message_text==message_text)
+        self.assertTrue(testMessage.urgency==urgency)
+        self.assertTrue(testMessage.sent_to==sent_to)
+        self.assertTrue(testMessage.sent_by==sent_by)
+        self.assertTrue(testMessage.has_read==has_read)
 
     def test_message_mark(self):
-        message = dynamo.Dynamo().get_message_by_id(message_id=0)
+        message = dynamo.Dynamo().get_message_by_id(message_id=1000)
         message[0]['read'] = True
         dynamo.Dynamo().update_message(message[0])
-        self.assertTrue(Message.objects.get(read=true))
+        self.assertTrue(dynamo.Dynamo().get_message_by_id(message_id=1000)[0]['read'])
 
     def test_message_delete(self):
         message_id = 0
