@@ -19,7 +19,7 @@ Saturday and Sunday Jan 16-17
 			- Ability to check status of rent
 
 Tuesday Jan 19
-- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Cao Qing, Courage Paul
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
 - Meeting for an hour in person
 	- Discuss final user stories and any other things that are needed for the Iteration 0 handin
 	- Any other problems or things to fix
@@ -33,7 +33,7 @@ Tuesday Jan 19
 
 
 Tuesday Jan 26
-- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Cao Qing, Courage Paul
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
 - Meeting for Iteration 1
 	- Need to implement back-end
 		- Django
@@ -60,7 +60,7 @@ Tuesday Jan 26
 	- host local webserver
 
 Thursday Jan 28
-- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Cao Qing, Courage Paul
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
 - Meeting for Iteration 1
 	- anyone who needs to learn the languages and technologies will learn it over the next couple of days
 	- anyone who already is familiar with the languages will set the base foundations for the application
@@ -68,7 +68,7 @@ Thursday Jan 28
 
 
 Tuesday Feb 2
-- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Cao Qing, Courage Paul
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
 - Meeting for Iteration 1 
 	- review over iteration 1 requirements
 	- discussion of what user stories need to be done by the priorities in Itr0
@@ -82,3 +82,22 @@ Tuesday Feb 2
 	- hardware architecture drawing
 		- decision to use UML diagrams to draw the architecture
 
+Thursday Feb 4
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Meeting for remaining things for Iteration 1
+	- Revised user stories
+		- Users 
+		- Messages
+		- Bulletin
+
+	- Diagram needs two different types of diagrams
+	- physical diagram
+		- user(application) -> web server -> framework -> amazon -> web server -> notifies user
+	- class diagram
+		- User class (Django generated - edited it)
+		- Messages Class 
+		- Bulletin Class
+- Discussion for the next iteration
+	- For iteration 2, features decided on are
+		- Bulletin user stories
+		- Addition of an proper front-end
