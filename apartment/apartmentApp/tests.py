@@ -12,4 +12,29 @@ class UserTestCase(TestCase):
 		name = 'Timmy the Tester'
 		user = User.objects.create_user(name, 'blahblah@gmail.com', 'password')
 		User.objects.get(username=name)
-		self.assertTrue(User.objects.get(username=name).delete())		
+		self.assertTrue(User.objects.get(username=name).delete())
+
+class MessageTestCase(TestCase):
+
+    def test_message_send(self):
+        message_id = 1001
+        timestamp = datetime.datetime.now()
+        message_text = 'Hello, tenant'
+        urgency = 1
+        sent_to = 'Room1 the Tester'
+        sent_by = 'manager'
+        has_read = False
+        message = Message.objects.create_message(message_id,timestamp,message_text,urgency,sent_to,sent_by,has_read)
+        self.assertTrue(Message.objects.get(message_id = message_id))
+
+    def test_message_delete(self):
+        message_id = 1001
+        timestamp = datetime.datetime.now()
+        message_text = 'Hello, tenant'
+        urgency = 1
+        sent_to = 'Room1 the Tester'
+        sent_by = 'manager'
+        has_read = False
+        message = Message.objects.create_message(message_id,timestamp,message_text,urgency,sent_to,sent_by,has_read)
+        Message.objects.get(message_id = message_id)
+        self.assertTrue(Message.objects.get(message_id = message_id).delete())
