@@ -33,6 +33,13 @@ class Dynamo:
         print(response['Items'])
         return response['Items']
 
+    def get_message_by_id(self, message_id):
+        table = self.dynamodb.Table('Message')
+
+        response = table.scan(FilterExpression=Attr('message_id').eq(message_id))
+        print(response['Items'])
+        return response['Items']
+
     def update_message(self, message):
         table = self.dynamodb.Table('Message')
         response = table.put_item(Item=message)

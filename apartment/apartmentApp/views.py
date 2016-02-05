@@ -93,12 +93,10 @@ class userMessages(generic.ListView):
         user = get_object_or_404(User, username=self.args[0])
         return dynamo.Dynamo().get_message_by_recipient(user.username)
 
-def markAsRead(request):
-    strMessage = str(request.POST['read'])
-    messages = ast.literal_eval(strMessage)
-    for message in messages:
-        message['read'] = True
-        dynamo.Dynamo().update_message(message)
+def markAsRead(request, message_id):
+    message = dynamo.Dynamo().get_message_by_id(message_id)
+    message[0]['read'] = True
+    dynamo.Dynamo().update_message(message[0])
     return render(request, 'home.html')
 
 
