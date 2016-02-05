@@ -1,5 +1,5 @@
 import boto3
-
+from boto3.dynamodb.conditions import Attr
 
 class Dynamo:
     # http://boto3.readthedocs.org/en/latest/reference/services/dynamodb.html
@@ -29,8 +29,9 @@ class Dynamo:
     def get_message_by_recipient(self, recipient):
         table = self.dynamodb.Table('Message')
 
-        response = table.query(recipient=recipient)
-        print(response)
+        response = table.scan(FilterExpression=Attr('recipient').eq(recipient))
+        print(response['Items'])
+        return response['Items']
 
     # message_text = models.CharField(max_length=200)
     # pub_date = models.DateTimeField('date published')

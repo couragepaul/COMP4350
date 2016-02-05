@@ -90,5 +90,5 @@ class userMessages(generic.DetailView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.args[0])
-        return dynamo.Dynamo().get_message_by_recipient(user)
+        return dynamo.Dynamo().get_message_by_recipient(user.username)
 
