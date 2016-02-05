@@ -1,0 +1,9 @@
+{% if message_list %}
+    <ul>
+    {% for message in message_list %}
+        <li>{{ message.context }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No messages are available.</p>
+{% endif %}

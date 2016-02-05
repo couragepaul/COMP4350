@@ -2,8 +2,8 @@ import boto3
 import json
 import time
 
-from django.shortcuts import render
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views import generic
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -57,16 +57,18 @@ def createMessageView(request):
 
 def sendMessage(request):
     try:
-
+        user = User.objects.get(username=str(request.POST['send_to']))
         message = {
             'sender': 'test',
-            'recipient': 'test2',
+            'recipient': user.username,
             'urgency': int(request.POST['urgency']),
             'content': str(request.POST['message']),
             'timestamp': int(time.time())
         }
 
         dynamo.Dynamo().send_message(message)
+
+        dynamo.Dynamo().get_message_by_recipient(user.username)
 
         return redirect(sentMessageView)
     except Exception as e:
@@ -81,4 +83,12 @@ def sentMessageView(request):
 def errorMessage(request):
     html = "Error creating message"
     return HttpResponse(html)
+
+class userMessages(generic.DetailView):
+    context_object_name = 'message_list'
+    template_name = 'userMessages.html'
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.args[0])
+        return dynamo.Dynamo().get_message_by_recipient(user)
 

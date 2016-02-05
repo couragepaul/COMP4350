@@ -29,7 +29,7 @@ class Dynamo:
     def get_message_by_recipient(self, recipient):
         table = self.dynamodb.Table('Message')
 
-        response = table.query_2(recipient=recipient)
+        response = table.query(recipient=recipient)
         print(response)
 
     # message_text = models.CharField(max_length=200)
