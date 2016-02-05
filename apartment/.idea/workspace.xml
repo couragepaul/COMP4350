@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3dc57b50-394e-4e85-8675-7ab3b39d1555" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apartmentApp/dynamo.py" afterPath="$PROJECT_DIR$/apartmentApp/dynamo.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apartmentApp/views.py" afterPath="$PROJECT_DIR$/apartmentApp/views.py" />
     </list>
     <ignored path="apartment.iws" />
@@ -72,8 +73,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apartmentApp/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5294118">
-              <caret line="84" column="35" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+            <state vertical-scroll-proportion="0.7647059">
+              <caret line="96" column="59" selection-start-line="96" selection-start-column="59" selection-end-line="96" selection-end-column="59" />
               <folding>
                 <element signature="e#0#12#0" expanded="true" />
               </folding>
@@ -130,9 +131,9 @@
         <option value="$PROJECT_DIR$/apartmentApp/templates/sentMessage.html" />
         <option value="$PROJECT_DIR$/apartmentApp/templates/userEmail.html" />
         <option value="$PROJECT_DIR$/apartmentApp/templates/home.html" />
-        <option value="$PROJECT_DIR$/apartmentApp/dynamo.py" />
         <option value="$PROJECT_DIR$/apartmentApp/urls.py" />
         <option value="$PROJECT_DIR$/apartmentApp/templates/userMessages.html" />
+        <option value="$PROJECT_DIR$/apartmentApp/dynamo.py" />
         <option value="$PROJECT_DIR$/apartmentApp/views.py" />
       </list>
     </option>
@@ -438,7 +439,13 @@
       <option name="project" value="LOCAL" />
       <updated>1454661627211</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="modified markAsRead function in views">
+      <created>1454689352115</created>
+      <option name="number" value="00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1454689352115</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TodoView">
@@ -491,7 +498,8 @@
     <MESSAGE value="views" />
     <MESSAGE value="added userMessages page" />
     <MESSAGE value="user page partially done for &quot;has read&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="user page partially done for &quot;has read&quot;" />
+    <MESSAGE value="modified markAsRead function in views" />
+    <option name="LAST_COMMIT_MESSAGE" value="modified markAsRead function in views" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -916,18 +924,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apartmentApp/templates/home.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-11.875">
-          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apartmentApp/templates/createMessage.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
           <caret line="0" column="25" selection-start-line="0" selection-start-column="25" selection-end-line="0" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apartmentApp/templates/home.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-11.875">
+          <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="16" />
           <folding />
         </state>
       </provider>
@@ -952,8 +960,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apartmentApp/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5294118">
-          <caret line="84" column="35" selection-start-line="84" selection-start-column="35" selection-end-line="84" selection-end-column="35" />
+        <state vertical-scroll-proportion="0.7647059">
+          <caret line="96" column="59" selection-start-line="96" selection-start-column="59" selection-end-line="96" selection-end-column="59" />
           <folding>
             <element signature="e#0#12#0" expanded="true" />
           </folding>

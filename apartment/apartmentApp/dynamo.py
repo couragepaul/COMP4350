@@ -36,7 +36,7 @@ class Dynamo:
     def get_message_by_id(self, message_id):
         table = self.dynamodb.Table('Message')
 
-        response = table.scan(FilterExpression=Key('message_id').eq(message_id))
+        response = table.get_item(Key = {'message_id':message_id})
         print(response['Items'])
         return response['Items']
 

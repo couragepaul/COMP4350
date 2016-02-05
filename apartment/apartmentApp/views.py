@@ -95,7 +95,7 @@ class userMessages(generic.ListView):
 
 def markAsRead(request, message_id):
     message = dynamo.Dynamo().get_message_by_id(message_id)
-    message['read'] = True
+    message[0]['read'] = True
     dynamo.Dynamo().update_message(message[0])
     return render(request, 'home.html')
 
