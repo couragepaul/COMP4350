@@ -1,5 +1,5 @@
 import boto3
-from boto3.dynamodb.conditions import Attr
+from boto3.dynamodb.conditions import Key,Attr
 
 class Dynamo:
     # http://boto3.readthedocs.org/en/latest/reference/services/dynamodb.html
@@ -36,7 +36,7 @@ class Dynamo:
     def get_message_by_id(self, message_id):
         table = self.dynamodb.Table('Message')
 
-        response = table.scan(FilterExpression=Attr('message_id').eq(message_id))
+        response = table.scan(FilterExpression=Key('message_id').eq(message_id))
         print(response['Items'])
         return response['Items']
 
