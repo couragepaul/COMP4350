@@ -12,4 +12,10 @@ class UserTestCase(TestCase):
 		name = 'Timmy the Tester'
 		user = User.objects.create_user(name, 'blahblah@gmail.com', 'password')
 		User.objects.get(username=name)
-		self.assertTrue(User.objects.get(username=name).delete())		
+		self.assertTrue(User.objects.get(username=name).delete())
+        
+    def test_get_user(self):
+        name = 'Timmy the Tester'
+        user = User.objects.create_user(name, 'blahblah@gmail.com', 'password')
+        User.objects.get(username=name)
+        self.assertTrue(User.objects.get(username=name))
