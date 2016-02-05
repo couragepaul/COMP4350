@@ -14,5 +14,6 @@ urlpatterns = [
 	url(r'^logoutUser', views.logoutUser, name='logoutUser'),
     url(r'^createUser', views.createUser, name='createUser'),
 	url(r'^deleteUser', views.deleteUser, name='deleteUser'),
+    url(r'^markAsRead', views.markAsRead, name='markAsRead'),
     url(r'^(\w+)', views.userMessages.as_view(), name='userMessages'),
 ]

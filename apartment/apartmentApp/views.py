@@ -1,7 +1,7 @@
 import boto3
 import json
 import time
-
+import ast
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.http import HttpResponse
@@ -63,7 +63,8 @@ def sendMessage(request):
             'recipient': user.username,
             'urgency': int(request.POST['urgency']),
             'content': str(request.POST['message']),
-            'timestamp': int(time.time())
+            'timestamp': int(time.time()),
+            'read': False
         }
 
         dynamo.Dynamo().send_message(message)
@@ -84,11 +85,20 @@ def errorMessage(request):
     html = "Error creating message"
     return HttpResponse(html)
 
-class userMessages(generic.DetailView):
+class userMessages(generic.ListView):
     context_object_name = 'message_list'
     template_name = 'userMessages.html'
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.args[0])
         return dynamo.Dynamo().get_message_by_recipient(user.username)
+
+def markAsRead(request):
+    strMessage = str(request.POST['read'])
+    messages = ast.literal_eval(strMessage)
+    for message in messages:
+        message['read'] = True
+        dynamo.Dynamo().update_message(message)
+    return render(request, 'home.html')
+
 

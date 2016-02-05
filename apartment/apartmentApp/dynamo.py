@@ -33,6 +33,11 @@ class Dynamo:
         print(response['Items'])
         return response['Items']
 
+    def update_message(self, message):
+        table = self.dynamodb.Table('Message')
+        response = table.put_item(Item=message)
+        print(response)
+
     # message_text = models.CharField(max_length=200)
     # pub_date = models.DateTimeField('date published')
     # sent_by = models.CharField(max_length=50)

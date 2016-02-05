@@ -1,8 +1,16 @@
 {% if message_list %}
+    <form action="markAsRead" method="post">
+        {% csrf_token %}
     <ul>
     {% for message in message_list %}
-        <li>{{ message.context }}</li>
+        <li>
+        <input type="checkbox" value="{{message}}" name="read"/>
+            {{ message.content }}</li>
     {% endfor %}
+
+
+        <input type="submit" value="Mark as read"/>
+    </form>
     </ul>
 {% else %}
     <p>No messages are available.</p>
