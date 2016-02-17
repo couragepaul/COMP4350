@@ -27,41 +27,24 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="info">
-        <td>02/16/2016</td>
-        <td>That meeting was so boring</td>
-          <td>3</td>
-      </tr>
-      <tr class="active">
-        <td>02/01/2016</td>
-        <td>Josh will never notice this</td>
-          <td>6</td>
-      </tr>
-      <tr class="active">
-        <td>01/01/2016</td>
-        <td>Happy New Years Everyone!</td>
-          <td>1</td>
-      </tr>
-      <tr class="active">
-        <td>25/12/2015</td>
-        <td>Merry Christmas Everyone!</td>
-          <td>1</td>
-      </tr>
+      {% if message_list %}
+          {% for message in message_list %}
+          {# active = white, info = blue, warning = orange, danger = red, success = green #}
+          <tr class="active"> 
+            {# date #}
+            <td>{{message.timestamp}}</td>
+            {# Message #}
+            <td>{{message.content}}</td>
+            {# Urgency #}
+            <td>{{message.urgency}}</td>
+          </tr>
+          {% endfor %}
+      {% else %}
+          <p>No messages are available.</p>
+      {% endif %}
     </tbody>
   </table>
 </div>
 
 </body>
 </html>
-
-{% if message_list %}
-    <ul>
-    {% for message in message_list %}
-        <li>Urgency: {{message.urgency}} |
-            <a href="{% url 'markAsRead' message.recipient message.message_id %}">{{ message.content }}</a>
-        </li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No messages are available.</p>
-{% endif %}
