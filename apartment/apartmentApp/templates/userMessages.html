@@ -30,7 +30,20 @@
       {% if message_list %}
           {% for message in message_list %}
           {# active = white, info = blue, warning = orange, danger = red, success = green #}
-          <tr class="active"> 
+
+          {% if message.read == True %}
+            <tr class="info"> 
+          {% else %}
+            {% if message.urgency <= 3 %}
+              {% if message.urgency == 1 %}
+                <tr class="danger"> 
+              {% else %}
+                <tr class="info"> 
+              {% endif %}
+            {% else %}
+              <tr class="active"> 
+            {% endif %}
+          {% endif %}
             {# date #}
             <td>{{message.timestamp}}</td>
             {# Message #}
