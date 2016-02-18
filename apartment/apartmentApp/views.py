@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from . import dynamo
+from .models import Message
 
 
 def index(request):
@@ -93,11 +94,12 @@ class userMessages(generic.ListView):
         user = get_object_or_404(User, username=self.args[0])
         return dynamo.Dynamo().get_message_by_recipient(user.username)
 
-def markAsRead(request, message_id):
+
+def message(request, message_id):
     message = dynamo.Dynamo().get_message_by_id(message_id)
     message[0]['read'] = True
     dynamo.Dynamo().update_message(message[0])
-    html = "message has been marked as read"
-    return HttpResponse(html)
+    return render(request, 'message.html')
+
 
 
