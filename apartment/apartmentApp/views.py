@@ -100,4 +100,10 @@ def markAsRead(request, message_id):
     html = "message has been marked as read"
     return HttpResponse(html)
 
+def bulletinBoard(request):
+    return render(request, 'bulletinBoard.html')
+
+def bulletin(request, bulletin_id):
+    return render(request, 'bulletin.html')
+
 
