@@ -31,8 +31,6 @@ class Dynamo:
         table = self.dynamodb.Table('Message')
 
         response = table.scan(FilterExpression=Attr('recipient').eq(recipient))
-        for msg in response['Items']:
-            msg["timestamp"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(msg["timestamp"]))
 
         print(response['Items'])
         return response['Items']

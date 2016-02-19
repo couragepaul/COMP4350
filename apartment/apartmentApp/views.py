@@ -92,14 +92,18 @@ class userMessages(generic.ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.args[0])
-        return dynamo.Dynamo().get_message_by_recipient(user.username)
+        messages = dynamo.Dynamo().get_message_by_recipient(user.username)
+        for msg in messages:
+            msg["timestamp"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(msg["timestamp"]))
+        return messages
 
 
 def message(request, message_id):
-    message = dynamo.Dynamo().get_message_by_id(message_id)
-    message[0]['read'] = True
-    dynamo.Dynamo().update_message(message[0])
-    return render(request, 'message.html')
+    message = dynamo.Dynamo().get_message_by_id(message_id)[0]
+    message['read'] = True
+    dynamo.Dynamo().update_message(message)
+    message["timestamp"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(message["timestamp"]))
+    return render(request, 'message.html', {"msg":message})
 
 
 
