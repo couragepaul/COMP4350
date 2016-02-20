@@ -1,29 +1,43 @@
-<h1>Welcome to the Apartment Management Application!</h1>
-<BR>
-<form action="logoutUser" method="get">
-    <input type="submit" value="Log out"/>
-</form>
+<head>
 
-<BR><BR>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-<form action="createUser" method="post">
-{% csrf_token %}
-    <input type="text" name="username" id="username" value="username" />
-	<input type="text" name="email" id="email" value="email" />
-	<input type="password" name="password" id="password" value="password" />
-	<input type="submit" value="Create User" />
-</form>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
-<BR><BR>
+</head>
 
-<form action="deleteUser" method="post">
-{% csrf_token %}
-    <input type="text" name="username" id="username" value="username" />
-	<input type="submit" value="Delete User" />
-</form>
+<body>
 
-<BR>
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="#">Apartment Application</a>
+			<form action="logoutUser" method="get">
+				<button type="submit" class="btn btn-default navbar-right">Log Out</button>
+			</form>
+		</div>
+	</nav>
 
-<form action="createMessageView" method="get">
-    <input type="submit" value="Send Message"/>
-</form>
+
+	<form action="createUser" method="post">
+	{% csrf_token %}
+		<input type="text" name="username" id="username" value="username" />
+		<input type="text" name="email" id="email" value="email" />
+		<input type="password" name="password" id="password" value="password" />
+		<input type="submit" value="Create User" />
+	</form>
+
+	<BR><BR>
+
+	<form action="deleteUser" method="post">
+	{% csrf_token %}
+		<input type="text" name="username" id="username" value="username" />
+		<input type="submit" value="Delete User" />
+	</form>
+
+	<BR>
+
+	<form action="createMessageView" method="get">
+		<input type="submit" value="Send Message"/>
+	</form>
+
+</body>
