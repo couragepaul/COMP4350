@@ -10,34 +10,12 @@
 
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="#">Apartment Application</a>
-			<form action="logoutUser" method="get">
-				<button type="submit" class="btn btn-default navbar-right">Log Out</button>
-			</form>
-		</div>
+			<a class="navbar-brand" href="home">Apartment Application</a>
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="managerSettings">Manager Settings</a></li>
+				<li class="active"><a href="logoutUser">Log Out</a></li>
+			</ul
+		</div> 
 	</nav>
-
-
-	<form action="createUser" method="post">
-	{% csrf_token %}
-		<input type="text" name="username" id="username" value="username" />
-		<input type="text" name="email" id="email" value="email" />
-		<input type="password" name="password" id="password" value="password" />
-		<input type="submit" value="Create User" />
-	</form>
-
-	<BR><BR>
-
-	<form action="deleteUser" method="post">
-	{% csrf_token %}
-		<input type="text" name="username" id="username" value="username" />
-		<input type="submit" value="Delete User" />
-	</form>
-
-	<BR>
-
-	<form action="createMessageView" method="get">
-		<input type="submit" value="Send Message"/>
-	</form>
 
 </body>

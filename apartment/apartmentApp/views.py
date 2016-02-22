@@ -54,6 +54,9 @@ def deleteUser(request):
 
 def createMessageView(request):
     return render(request,'createMessage.html')
+	
+def managerSettings(request):
+    return render(request,'managerSettings.html')
 
 
 def sendMessage(request):
