@@ -4,9 +4,9 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
-html,
 body {
     height: 100%;
+    background-image: url('https://www.colourbox.com/preview/2245666-close-up-of-a-cork-board-can-be-used-as-background.jpg')
 }
 
 /* You can change the height of the carousel by changing the height in the class below. It is set to 50% by default, but can be any height! */
