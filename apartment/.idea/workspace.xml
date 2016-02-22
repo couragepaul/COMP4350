@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3dc57b50-394e-4e85-8675-7ab3b39d1555" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/apartmentApp/templates/css/3-col-portfolio.css" afterPath="$PROJECT_DIR$/apartmentApp/static/apartmentApp/3-col-portfolio.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apartmentApp/static/apartmentApp/half-slider.css" afterPath="$PROJECT_DIR$/apartmentApp/static/apartmentApp/half-slider.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apartmentApp/templates/bulletin.html" afterPath="$PROJECT_DIR$/apartmentApp/templates/bulletin.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apartmentApp/templates/bulletinBoard.html" afterPath="$PROJECT_DIR$/apartmentApp/templates/bulletinBoard.html" />
     </list>
     <ignored path="apartment.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -85,20 +83,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="half-slider.css" pinned="false" current-in-tab="false">
+      <file leaf-file-name="half-slider.css" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apartmentApp/static/apartmentApp/half-slider.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+            <state vertical-scroll-proportion="0.11734029">
+              <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="style.css" pinned="false" current-in-tab="true">
+      <file leaf-file-name="style.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apartmentApp/static/apartmentApp/style.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.15645371">
+            <state vertical-scroll-proportion="0.0">
               <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
               <folding />
             </state>
@@ -108,10 +106,9 @@
       <file leaf-file-name="bulletin.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apartmentApp/templates/bulletin.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-7.27451">
-              <caret line="124" column="43" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="43" />
+            <state vertical-scroll-proportion="5.2941175">
+              <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
               <folding>
-                <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
@@ -176,9 +173,9 @@
         <option value="$PROJECT_DIR$/apartmentApp/templates/message.html" />
         <option value="$PROJECT_DIR$/apartmentApp/templates/bulletinBoard.html" />
         <option value="$PROJECT_DIR$/apartmentApp/static/apartmentApp/3-col-portfolio.css" />
-        <option value="$PROJECT_DIR$/apartmentApp/static/apartmentApp/half-slider.css" />
-        <option value="$PROJECT_DIR$/apartmentApp/templates/bulletin.html" />
         <option value="$PROJECT_DIR$/apartmentApp/static/apartmentApp/style.css" />
+        <option value="$PROJECT_DIR$/apartmentApp/templates/bulletin.html" />
+        <option value="$PROJECT_DIR$/apartmentApp/static/apartmentApp/half-slider.css" />
       </list>
     </option>
   </component>
@@ -527,7 +524,13 @@
       <option name="project" value="LOCAL" />
       <updated>1455771360559</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Made bulletins look nicer">
+      <created>1456124426114</created>
+      <option name="number" value="00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1456124426114</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TodoView">
@@ -545,6 +548,7 @@
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12585571" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970297" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34950495" sideWeight="0.5018431" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32871288" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21287128" sideWeight="0.49815693" order="7" side_tool="false" content_ui="tabs" />
@@ -554,7 +558,6 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -604,7 +607,8 @@
     <MESSAGE value="Added basic details for message front end" />
     <MESSAGE value="Fixed times on messages" />
     <MESSAGE value="Added links for messages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added links for messages" />
+    <MESSAGE value="Made bulletins look nicer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Made bulletins look nicer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1008,20 +1012,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apartmentApp/static/apartmentApp/half-slider.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apartmentApp/templates/bulletin.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-7.27451">
-          <caret line="124" column="43" selection-start-line="124" selection-start-column="43" selection-end-line="124" selection-end-column="43" />
+        <state vertical-scroll-proportion="5.2941175">
+          <caret line="38" column="56" selection-start-line="38" selection-start-column="56" selection-end-line="38" selection-end-column="56" />
           <folding>
-            <element signature="n#style#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#header#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
@@ -1029,8 +1024,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apartmentApp/static/apartmentApp/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.15645371">
+        <state vertical-scroll-proportion="0.0">
           <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apartmentApp/static/apartmentApp/half-slider.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11734029">
+          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
           <folding />
         </state>
       </provider>
