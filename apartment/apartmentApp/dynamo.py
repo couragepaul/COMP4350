@@ -38,12 +38,6 @@ class Dynamo:
 
     def send_message(self, message):
         table = self.dynamodb.Table('se2_message')
-        timestamp = int(time.time())
-
-        # Don't overwrite a message that was sent to the same person at the same time. Very rare.
-        while table.get_item(recipient=message['sent_to'], timestamp=timestamp):
-            timestamp += 1
-        message['timestamp'] = timestamp
 
         response = table.put_item(Item=message)
         print(response)
@@ -51,9 +45,7 @@ class Dynamo:
     def get_message_by_recipient(self, recipient):
         table = self.dynamodb.Table('se2_message')
 
-        response = table.scan(FilterExpression=Attr('recipient').eq(recipient))
-
-        print(response['Items'])
+        response = table.query(KeyConditionExpression=Key('recipient').eq(recipient))
         return response['Items']
 
     def get_message_by_id(self, message_id):
