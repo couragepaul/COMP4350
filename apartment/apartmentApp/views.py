@@ -72,12 +72,11 @@ def sendMessage(request):
         }
 
         dynamo.Dynamo().send_message(message)
-
         dynamo.Dynamo().get_message_by_recipient(user.username)
 
         return redirect(sentMessageView)
     except Exception as e:
-        print(e)
+        print("\tERROR\tFailed to create message: " + str(e))
         return redirect(errorMessage)
 
 
