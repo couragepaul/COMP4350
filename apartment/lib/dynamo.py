@@ -1,6 +1,7 @@
 import boto3
-import time
+
 from boto3.dynamodb.conditions import Key,Attr
+
 
 class Dynamo:
     # http://boto3.readthedocs.org/en/latest/reference/services/dynamodb.html
@@ -50,11 +51,15 @@ class Dynamo:
         print(response)
 
     @staticmethod
-    def get_message_by_recipient(recipient):
+    def get_messages_by_recipient(recipient):
         table = Dynamo.dynamodb.Table('se2_message')
 
         response = table.query(KeyConditionExpression=Key('recipient').eq(recipient))
         return response['Items']
+
+    # @staticmethod
+    # def get_message(recipient, timestamp):
+
 
     @staticmethod
     def send_bulletin(bulletin):
