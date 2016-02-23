@@ -76,9 +76,17 @@ class Dynamo:
         print(response)
 
     @staticmethod
+    def get_bulletins():
+        pass
+
+    @staticmethod
+    def get_comments():
+        pass
+
+    @staticmethod
     def update_message(message):
         table = Dynamo.dynamodb.Table('se2_message')
-        response = table.put_item(Item=message)
+        response = table.update_item(Item=message)
         print(response)
 
 
