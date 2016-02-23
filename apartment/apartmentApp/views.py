@@ -71,15 +71,39 @@ def sendMessage(request):
             'read': False
         }
 
-        dynamo.Dynamo().send_message(message)
-
-        dynamo.Dynamo().get_message_by_recipient(user.username)
+        dynamo.Dynamo.initialize().send_message(message)
+        dynamo.Dynamo.get_message_by_recipient(user.username)
 
         return redirect(sentMessageView)
     except Exception as e:
-        print(e)
+        print("\tERROR\tFailed to create message: " + str(e))
         return redirect(errorMessage)
 
+def sendBulletin(request):
+    try:
+        bulletin = {
+            'sender': 'test',
+            'content': str(request.POST['message']),
+            'timestamp': int(time.time())
+        }
+
+        dynamo.Dynamo.initialize().send_bulletin(bulletin)
+    except Exception as e:
+        print("\tERROR\tFailed to send bulletin: " + str(e))
+        return redirect(errorMessage)
+
+def sendComment(request):
+    try:
+        comment = {
+            'sender': 'test',
+            'content': str(request.POST('message')),
+            'timestamp': int(time.time())
+        }
+
+        dynamo.Dynamo.initialize().send_comment(comment)
+    except Exception as e:
+        print("\tERROR\tFailed to send bulletin comment: " + str(e))
+        return redirect(errorMessage)
 
 def sentMessageView(request):
     return render(request, 'sentMessage.html')
@@ -95,16 +119,16 @@ class userMessages(generic.ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.args[0])
-        messages = dynamo.Dynamo().get_message_by_recipient(user.username)
+        messages = dynamo.Dynamo.get_message_by_recipient(user.username)
         for msg in messages:
             msg["timestamp"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(msg["timestamp"]))
         return messages
 
 
 def message(request, message_id):
-    message = dynamo.Dynamo().get_message_by_id(message_id)[0]
+    message = dynamo.Dynamo.get_message_by_id(message_id)[0]
     message['read'] = True
-    dynamo.Dynamo().update_message(message)
+    dynamo.Dynamo.update_message(message)
     message["timestamp"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(message["timestamp"]))
     return render(request, 'message.html', {"msg":message})
 

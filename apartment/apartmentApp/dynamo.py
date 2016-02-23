@@ -4,56 +4,76 @@ from boto3.dynamodb.conditions import Key,Attr
 
 class Dynamo:
     # http://boto3.readthedocs.org/en/latest/reference/services/dynamodb.html
-    __aws_access_key_id = 'AKIAIGLM2CBBY5EOMXYQ'
-    __aws_secret_access_key = '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'
-    __message_id = 1000
+    # http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/Tools.DynamoDBLocal.html#Tools.DynamoDBLocal.DownloadingAndRunning
 
-    def __init__(self):
-        boto3.setup_default_session(
-            aws_access_key_id = self.__aws_access_key_id,
-            aws_secret_access_key = self.__aws_secret_access_key
-        )
+    dynamodb = None
 
-        self.dynamodb = boto3.resource(
-            'dynamodb',
-            region_name='us-west-2',
-            endpoint_url="https://dynamodb.us-west-2.amazonaws.com"
-        )
+    @staticmethod
+    def initialize(stub=False):
+        # If you don't feel like setting environment variables for boto3 on your machine,
+        # you can hard code them here for testing.
 
-    def send_message(self, message):
-        table = self.dynamodb.Table('Message')
-        message['message_id'] = self.__message_id
-        self.__message_id += 1
+        # boto3.setup_default_session(
+        # aws_access_key_id = XXXXX,
+        # aws_secret_access_key = YYYYY
+        # )
+
+        if Dynamo.dynamodb is None:
+            try:
+                if stub:
+                    Dynamo.dynamodb = boto3.resource(
+                        'dynamodb',
+                        endpoint_url='http://localhost:8000' # change if required
+                    )
+                else :
+                    Dynamo.dynamodb = boto3.resource(
+                        'dynamodb',
+                        region_name='us-west-2',
+                        endpoint_url="https://dynamodb.us-west-2.amazonaws.com"
+                    )
+            except:
+                if stub:
+                    print('DB Connection Error: Unable to connect to local database. Check if database is '
+                          'running locally and ensure port number is correct.')
+                else:
+                    print('DB Connection Error: Unable to connect to AWS Hosted DynamoDB server. Check if access '
+                          'credentials are properly configured.')
+                raise
+
+        return Dynamo
+
+    @staticmethod
+    def send_message(message):
+        table = Dynamo.dynamodb.Table('se2_message')
+
         response = table.put_item(Item=message)
         print(response)
 
-    def get_message_by_recipient(self, recipient):
-        table = self.dynamodb.Table('Message')
+    @staticmethod
+    def get_message_by_recipient(recipient):
+        table = Dynamo.dynamodb.Table('se2_message')
 
-        response = table.scan(FilterExpression=Attr('recipient').eq(recipient))
-
-        print(response['Items'])
+        response = table.query(KeyConditionExpression=Key('recipient').eq(recipient))
         return response['Items']
 
-    def get_message_by_id(self, message_id):
-        table = self.dynamodb.Table('Message')
-        msgID = int(message_id)
+    @staticmethod
+    def send_bulletin(bulletin):
+        table = Dynamo.dynamodb.Table('se2_bulletin')
 
-        response = table.scan(FilterExpression=Attr('message_id').eq(msgID))
-
-        print(response['Items'])
-        return response['Items']
-
-    def update_message(self, message):
-        table = self.dynamodb.Table('Message')
-        response = table.put_item(Item=message)
+        response = table.put_item(Item=bulletin)
         print(response)
 
-    # message_text = models.CharField(max_length=200)
-    # pub_date = models.DateTimeField('date published')
-    # sent_by = models.CharField(max_length=50)
-    # sent_to = models.CharField(max_length=50)
-    # urgency = models.IntegerField()
-    # has_read = models.BooleanField()
+    @staticmethod
+    def send_comment(comment):
+        table = Dynamo.dynamodb.Table('se2_comment')
+
+        response = table.put_item(Item=comment)
+        print(response)
+
+    @staticmethod
+    def update_message(message):
+        table = Dynamo.dynamodb.Table('se2_message')
+        response = table.put_item(Item=message)
+        print(response)
 
 

@@ -24,9 +24,8 @@ class BulletinReply(models.Model):
 
 
 class Message(models.Model):
-    message_id = models.IntegerField(default=1000)
     message_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    timestamp = models.IntegerField()
     sent_by = models.CharField(max_length=50)
     sent_to = models.CharField(max_length=50)
     urgency = models.IntegerField()
