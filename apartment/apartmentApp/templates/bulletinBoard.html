@@ -70,9 +70,8 @@
         <div class="row">
             <div class="col-lg-10">
                 <h1 class="page-header">
-                    <p style="text-align:left;"><font color="white">Bulletin Board</font>
-                    <span style="float:right;"><button class="btn btn-default">New Bulletin</button></span>
-                    </p>
+                    <font color="white">Bulletin Board</font>
+                    <form action="createBulletin" method="post">{% csrf_token %}<button class="btn btn-default" type="submit">New Bulletin</button></form>
                 </h1>
 
             </div>

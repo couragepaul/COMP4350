@@ -111,6 +111,9 @@ def message(request, message_id):
 def bulletinBoard(request):
     return render(request, 'bulletinBoard.html')
 
+def createBulletin(request):
+    return render(request, 'createBulletin.html')
+
 def bulletin(request, bulletin_id):
     return render(request, 'bulletin.html')
 
