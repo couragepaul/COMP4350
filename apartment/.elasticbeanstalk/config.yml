@@ -1,0 +1,11 @@
+branch-defaults:
+  default:
+    environment: apartment-app
+    group_suffix: null
+global:
+  application_name: ApartmentApp
+  default_ec2_keyname: key-pair
+  default_platform: python3.4
+  default_region: us-west-2
+  profile: null
+  sc: null
