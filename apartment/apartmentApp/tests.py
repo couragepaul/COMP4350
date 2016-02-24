@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 
-
 class UserTestCase(TestCase):
 
     def test_user_create(self):
@@ -23,7 +22,6 @@ class UserTestCase(TestCase):
         name = 'Tommy'
         user = User.objects.create_user(name, 'blahblahdsa.com', 'password')
         self.assertFlase(User.objects.get(username=name))
-
 
     def test_user_delete(self):
         name = 'Timmy the Tester'
