@@ -77,11 +77,17 @@ class Dynamo:
 
     @staticmethod
     def get_bulletins():
-        pass
+        table = Dynamo.dynamodb.Table('se2_bulletin')
+
+        response = table.scan()
+        return response['Items']
 
     @staticmethod
-    def get_comments():
-        pass
+    def get_comments(sender, timestamp):
+        table = Dynamo.dynamodb.Table('se2_comment')
+
+        response = table.query(sender=sender, timestamp=timestamp)
+        return response['Items']
 
     @staticmethod
     def update_message(message):

@@ -21,9 +21,11 @@ def sendBulletin(request):
 
 def sendComment(request):
     try:
+        bulletin = request.POST['bulletin']
         comment = {
             'sender': 'test',
             'content': str(request.POST['message']),
+            'bulletin_id': int(bulletin['bulletin_id']),
             'timestamp': int(time.time())
         }
 
@@ -36,13 +38,16 @@ def sendComment(request):
 
 
 def bulletinBoard(request):
-    return render(request, 'bulletinBoard.html')
+    bulletins = Dynamo.get_bulletins()
+    return render(request, 'bulletinBoard.html', {"bulletin_list": bulletins})
 
 def createBulletin(request):
     return render(request, 'createBulletin.html')
 
-def bulletin(request, bulletin_id):
-    return render(request, 'bulletin.html')
+def bulletin(request):
+    bulletin = request.POST['bulletin']
+    comments = Dynamo.get_comments(bulletin['sender'], bulletin['timestamp'])
+    return render(request, 'bulletin.html', {'bulletin':bulletin, 'comment_list':comments})
 
 def error_message():
     html = "Error creating message"
