@@ -79,7 +79,7 @@
 
     <div class="container">
         <h3><script>
-            document.write("{{bulletin.post_by}}")
+            document.write("{{bulletin.user}}")
         </script></h3>
         <h4><script>
           document.write("{{bulletin.timestamp}}");
@@ -87,7 +87,7 @@
         <div class="panel panel-default">
             <div class="panel-body">
                 <p class="lead"><script>
-                   document.write("{{bulletin.content}}");
+                   document.write("{{bulletin.message}}");
                 </script></p>
             </div>
         </div>
@@ -104,6 +104,21 @@
     </div>
     <div class="actionBox">
         <ul class="commentList">
+            {% if comment_list %}
+                {% for comment in comment_list %}
+                <li>
+                    <div class="commenterImage">
+                        <img src="http://lorempixel.com/50/50/people/6" />
+                    </div>
+                    <div class="commentText">
+                        <p class=""><script>document.write("{{comment.message}}")</script></p> <span class="date sub-text"><script>document.write("{{comment.timestamp}}")</script></span>
+                    </div>
+                </li>
+                {% endfor %}
+            {% else %}
+                <p>No comments are available.</p>
+            {% endif %}
+
             <li>
                 <div class="commenterImage">
                   <img src="http://lorempixel.com/50/50/people/6" />
