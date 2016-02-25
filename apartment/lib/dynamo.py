@@ -86,7 +86,7 @@ class Dynamo:
     def get_comments(sender, timestamp):
         table = Dynamo.dynamodb.Table('se2_comment')
 
-        response = table.query(KeyConditionExpression=Key('sender').eq(sender) & Key('timestamp').eq(timestamp))
+        response = table.scan(FilterExpression=Attr('sender').eq(sender) & Attr('timestamp').eq(timestamp))
         return response['Items']
 
     @staticmethod

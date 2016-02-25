@@ -23,17 +23,18 @@ def sendBulletin(request):
 
 def sendComment(request):
     try:
-        bulletin = request.POST['bulletin']
+        bulletinString = request.POST['bulletin']
+        bulletin = ast.literal_eval(bulletinString)
         comment = {
             'sender': 'test',
             'content': str(request.POST['message']),
-            'bulletin_id': int(bulletin['bulletin_id']),
+            'bulletin_timestamp': int(bulletin['timestamp']),
+            'bulletin_sender': bulletin['sender'],
             'timestamp': int(time.time())
         }
 
         Dynamo.initialize().send_comment(comment)
-        bulletin = request.POST['bulletin']
-        return redirect(bulletin(bulletin.bulletin_id))
+        return redirect(bulletin)
     except Exception as e:
         print("\tERROR\tFailed to send bulletin comment: " + str(e))
         return redirect(error_message)
