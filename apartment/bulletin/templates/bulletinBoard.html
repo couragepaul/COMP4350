@@ -80,16 +80,22 @@
 
         {% if bulletin_list %}
             {% for bulletin in bulletin_list %}
+            <form action="bulletin" method="post">{% csrf_token %}
+                <input name="bulletin" type="hidden" value="{{ bulletin }}" />
             <div class="col-md-3 portfolio-item" >
-                <a href="{% url 'bulletin' %}">
+                <a>
                     <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                </a>
 
                 <h3>
-                    <a><script>document.write("{{bulletin.sender}}")</script></a>
+                    <a style="text-align:left;"><script>document.write("{{bulletin.sender}}")</script>
+                    <span style="float:right;"><button class="btn btn-default" type="submit">Details</button></span>
+                    </a>
                 </h3>
                 <p><script>document.write("{{bulletin.content}}")</script></p>
-                </a>
+
             </div>
+            </form>
             {% endfor %}
         {% else %}
           <p>No bulletins are available.</p>

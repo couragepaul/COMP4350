@@ -1,4 +1,6 @@
 import time
+import ast
+from decimal import *
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
@@ -39,14 +41,17 @@ def sendComment(request):
 
 def bulletinBoard(request):
     bulletins = Dynamo.get_bulletins()
+    for bulletin in bulletins:
+            bulletin["timestamp"] = str(bulletin["timestamp"])
     return render(request, 'bulletinBoard.html', {"bulletin_list": bulletins})
 
 def createBulletin(request):
     return render(request, 'createBulletin.html')
 
 def bulletin(request):
-    bulletin = request.POST['bulletin']
-    comments = Dynamo.get_comments(bulletin['sender'], bulletin['timestamp'])
+    bulletinString = request.POST['bulletin']
+    bulletin = ast.literal_eval(bulletinString)
+    comments = Dynamo.get_comments(bulletin['sender'], Decimal(bulletin['timestamp']))
     return render(request, 'bulletin.html', {'bulletin':bulletin, 'comment_list':comments})
 
 def error_message():
