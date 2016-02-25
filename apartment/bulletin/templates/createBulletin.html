@@ -81,10 +81,12 @@
         <h3><font color="white">Message</font></h3>
 
         <div class="panel" style="background: none">
-            <textarea name="Text1" cols="150" rows="5"></textarea>
+            <form action="sendBulletin" method="post">{% csrf_token %}
+            <textarea name="message" cols="150" rows="5"></textarea>
             <div class="form-group">
-                <button class="btn btn-default" type="submit" formmethod="post" formaction="invalidLogin">Create Bulletin</button>
+                <button class="btn btn-default" type="submit">Create Bulletin</button>
             </div>
+            </form>
         </div>
     </div>
 
