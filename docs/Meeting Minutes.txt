@@ -101,3 +101,27 @@ Thursday Feb 4
 	- For iteration 2, features decided on are
 		- Bulletin user stories
 		- Addition of an proper front-end
+
+Thursday Feb 11 
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Overview of what was finished in iteration 1 
+- Decisions about what to do for Iteration 2
+	- add more tests to the application
+	- ensure that sufficient tests are added to the features that will be implemented
+	- bulletin features are the ones that will be implemented
+- Waiting on the actual posts from Mr. Hemmati to see what we actually need to have done for this next iteration
+
+Tuesday Feb 16
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Design meeting for the front-end of the application
+	- Single page application that uses bootstrap to help it out
+	- Designs meeting had
+		- login page
+		- messages page
+		- admin page
+		- bulletin page
+		- all of these pages have simple designs
+		- each member of the group came up with at least 2 designs in total
+			- required for us to have for this meeting
+- Further discussion about the required things for iteration 2 handin
+	- decision for next iteration for our own project is the calendar part of the application
