@@ -3,9 +3,12 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
+baseURL = "http://apartment-app.pfsa2harbh.us-west-2.elasticbeanstalk.com/apartmentApp"
+
 def loginSession(self):
-    #make sure we are in the home page
-    self.driver.get("http://127.0.0.1:8000/apartmentApp/")
+    #make sure we are in the home page -- uncomment if you want localhost testing
+    # self.driver.get("http://127.0.0.1:8000/apartmentApp/")
+    self.driver.get(baseURL)
     username = "tester"
     password = "test"
     #username
@@ -53,7 +56,8 @@ class ApartmentSendMessageTestCase(unittest.TestCase):
     def test_sending_messages(self):
         #make sure we are in the home page
         # the url should be changed to create message url
-        self.driver.get("http://127.0.0.1:8000/apartmentApp/createMessageView")
+        # self.driver.get("http://127.0.0.1:8000/apartmentApp/createMessageView")
+        self.driver.get(baseURL + "/createMessageView")
         username = "jourey"
         msg = "test message from selenium"
         urg = "1"
@@ -88,14 +92,16 @@ class ApartmentBulletinBoardTestCase(unittest.TestCase):
 
     def test_jump_from_bulletin_board_to_create_new_bulletin_page(self):
         # url should be changed to bulletin board url
-        self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard")
+        # self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard")
+        self.driver.get(baseURL + "/bulletinBoard")
         create = '//button[text()="New Bulletin"]'
         createButton = self.driver.find_element_by_xpath(create)
         createButton.click()
 
     def test_create_new_bulletin(self):
         # url should be changed to create bulletin url
-        self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard/createBulletin")
+        # self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard/createBulletin")
+        self.driver.get(baseURL + "/bulletinBoard/createBulletin")
         content = self.driver.find_element_by_name("Text1")
         content.send_keys("Attention! This is a test bulletin from selenium")
         create = '//button[text()="Create Bulletin"]'
@@ -105,7 +111,8 @@ class ApartmentBulletinBoardTestCase(unittest.TestCase):
     def test_add_comment(self):
         # url should be changed to bulletin url
         # need to double check this test TODO: fix test to work with proper bulletins
-        self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard/10")
+        # self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard/10")
+        self.driver.get(baseURL + "/bulletinBoard/10")
         comment = self.driver.find_element_by_class_name("form-control")
         comment.send_keys("This is a test comment from selenium")
         add = '//button[text()="Add"]'
@@ -127,7 +134,8 @@ class ManagerSettingTestCase(unittest.TestCase):
 
     def test_create_new_tenant(self):
         # the url should be changed to managerSetting url
-        self.driver.get("http://127.0.0.1:8000/apartmentApp/managerSettings")
+        # self.driver.get("http://127.0.0.1:8000/apartmentApp/managerSettings")
+        self.driver.get(baseURL + "/managerSettings")
         name = self.driver.find_element_by_name("username")
         name.send_keys(Keys.CONTROL,'a')
         name.send_keys(Keys.DELETE)
@@ -146,9 +154,10 @@ class ManagerSettingTestCase(unittest.TestCase):
 
     def test_delete_tenant(self):
         # the url should be changed to managerSetting url
-        self.driver.get("http://127.0.0.1:8000/apartmentApp/managerSettings")
+        # self.driver.get("http://127.0.0.1:8000/apartmentApp/managerSettings")
+        self.driver.get(baseURL + "/managerSettings")
         #TODO: Change this to be proper name, asked nick to change it
-        name = self.driver.find_element_by_name("username")
+        name = self.driver.find_element_by_name("deleteUsername")
         name.send_keys(Keys.CONTROL,'a')
         name.send_keys(Keys.DELETE)
         name.send_keys("qing")
