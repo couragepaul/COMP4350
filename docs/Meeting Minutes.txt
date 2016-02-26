@@ -125,3 +125,29 @@ Tuesday Feb 16
 			- required for us to have for this meeting
 - Further discussion about the required things for iteration 2 handin
 	- decision for next iteration for our own project is the calendar part of the application
+
+Saturday Feb 20
+- Online meeting on skype
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Contributions for this project so far has been a group effort, everyone puts their effort into this project
+- Meeting about our current progress for iteration 2
+	- Current iteration features chosen are the bulletin features
+		- Please refer to the planning document that has all the features to have an updated cost
+		- The document name is Project Stories, please refer to that
+	- Next iteration will have the calendar features be implemented
+		- once again please refer to the project stories document in the document folder, that has the estimated hours(cost) that it would take to do the features
+		- this was also evident in the last iteration
+			- this is the document that gets updated as we go along in the iterations
+- Current plan
+	- Finish any more work on the front-end that is required
+		- polishing pages - jourey, nick, courage, tim
+	- Research Selenium for front end automated testing
+		- jourey and qing to research about this
+	- Add Bulletins tables to the application to use 
+		- josh
+	- attach the bulletin front-end with the bulletin back-end
+		- tim
+	- Establish the amazon web service
+		- josh
+	- Add more tests to the application
+		- qing, courage
