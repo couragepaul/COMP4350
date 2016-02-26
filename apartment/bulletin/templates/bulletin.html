@@ -53,9 +53,11 @@
                 <li>
                     <a href="bulletinBoard">Bulletin</a>
                 </li>
-				<li>
-                    <a href="managerSettings">Manager Settings</a>
-                </li>
+				{% if request.user.is_staff %}
+					<li>
+						<a href="managerSettings">Manager Settings</a>
+					</li>
+				{% endif %}
 				<li>
                     <a href="logoutUser">Log Out</a>
                 </li>
