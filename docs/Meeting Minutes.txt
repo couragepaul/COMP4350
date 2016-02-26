@@ -151,3 +151,22 @@ Saturday Feb 20
 		- josh
 	- Add more tests to the application
 		- qing, courage
+
+Tuesday Feb 23
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Discussion about Iteration 2 requirements and things that need to get finished
+	- REST API and Amazon Web service
+		- handled by Josh
+	- Front-end schema and other pages
+		- nick, tim and courage
+	- Selenium and front-end testing
+		- jourey and qing
+	- addition of any other tests required in the backend
+		- anyone that has time
+
+Thursday Feb 25
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Checklist of the current finished products, review over things that need to be finished
+	- all discussions during this meetings was to just go over to make sure everything that was assigned on tuesday to each member is fine
+	- there were no problems as of this meeting so everything should be fine going ahead
+	- nothing to add in the meeting minutes
