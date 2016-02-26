@@ -78,16 +78,19 @@
     </header>
 
     <div class="container">
-        <h3><script>
-            document.write("{{bulletin.user}}")
-        </script></h3>
-        <h4><script>
-          document.write("{{bulletin.timestamp}}");
-        </script></h4>
+        <h2><font color="white"><script>
+            document.write("{{bulletin.subject}}")
+        </script></font></h2>
+        <h3><font color="white"><script>
+            document.write("{{bulletin.sender}}")
+        </script></font></h3>
+        <h4><font color="white"><script>
+          document.write("{{bulletin.time}}");
+        </script></font></h4>
         <div class="panel panel-default">
             <div class="panel-body">
                 <p class="lead"><script>
-                   document.write("{{bulletin.message}}");
+                   document.write("{{bulletin.content}}");
                 </script></p>
             </div>
         </div>
@@ -98,10 +101,6 @@
       <label>Comment Box</label>
         <button type="button" class="close" aria-hidden="true">&times;</button>
     </div>
-    <div class="commentBox">
-
-        <p class="taskDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-    </div>
     <div class="actionBox">
         <ul class="commentList">
             {% if comment_list %}
@@ -111,41 +110,13 @@
                         <img src="http://lorempixel.com/50/50/people/6" />
                     </div>
                     <div class="commentText">
-                        <p class=""><script>document.write("{{comment.message}}")</script></p> <span class="date sub-text"><script>document.write("{{comment.timestamp}}")</script></span>
+                        <p class=""><script>document.write("{{comment.content}}")</script></p> <span class="date sub-text"><script>document.write("{{comment.timestamp}}")</script></span>
                     </div>
                 </li>
                 {% endfor %}
             {% else %}
                 <p>No comments are available.</p>
             {% endif %}
-
-            <li>
-                <div class="commenterImage">
-                  <img src="http://lorempixel.com/50/50/people/6" />
-                </div>
-                <div class="commentText">
-                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                </div>
-            </li>
-            <li>
-                <div class="commenterImage">
-                  <img src="http://lorempixel.com/50/50/people/7" />
-                </div>
-                <div class="commentText">
-                    <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                </div>
-            </li>
-            <li>
-                <div class="commenterImage">
-                  <img src="http://lorempixel.com/50/50/people/9" />
-                </div>
-                <div class="commentText">
-                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                </div>
-            </li>
         </ul>
         <form class="form-inline" role="form" action="sendComment" method="post">
             <div class="form-group">
@@ -154,7 +125,7 @@
                 <input name="bulletin" type="hidden" value="{{ bulletin }}" />
             </div>
             <div class="form-group">
-                <button class="btn btn-default" type="submit">Add</button>
+                <input class="btn btn-default" type="submit" value="Add">
             </div>
         </form>
     </div>

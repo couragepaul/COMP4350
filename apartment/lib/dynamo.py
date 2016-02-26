@@ -70,7 +70,7 @@ class Dynamo:
 
     @staticmethod
     def send_comment(comment):
-        table = Dynamo.dynamodb.Table('se2_comment')
+        table = Dynamo.dynamodb.Table('se2_bulletin_comment')
 
         response = table.put_item(Item=comment)
         print(response)
@@ -84,9 +84,9 @@ class Dynamo:
 
     @staticmethod
     def get_comments(sender, timestamp):
-        table = Dynamo.dynamodb.Table('se2_comment')
+        table = Dynamo.dynamodb.Table('se2_bulletin_comment')
 
-        response = table.scan(FilterExpression=Attr('sender').eq(sender) & Attr('timestamp').eq(timestamp))
+        response = table.scan(FilterExpression=Attr('bulletin_reference').eq(sender + ':' + timestamp))
         return response['Items']
 
     @staticmethod

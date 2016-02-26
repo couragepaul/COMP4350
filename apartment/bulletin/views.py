@@ -2,7 +2,7 @@ import time
 import ast
 from decimal import *
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from lib.dynamo import Dynamo
 
@@ -11,6 +11,7 @@ def sendBulletin(request):
     try:
         bulletin = {
             'sender': 'test',
+            'subject': str(request.POST['subject']),
             'content': str(request.POST['message']),
             'timestamp': int(time.time())
         }
@@ -28,13 +29,13 @@ def sendComment(request):
         comment = {
             'sender': 'test',
             'content': str(request.POST['message']),
-            'bulletin_timestamp': int(bulletin['timestamp']),
-            'bulletin_sender': bulletin['sender'],
+            'bulletin_reference': bulletin['sender'] + ':' + bulletin['timestamp'],
             'timestamp': int(time.time())
         }
 
         Dynamo.initialize().send_comment(comment)
-        return redirect(bulletin)
+        #comments = Dynamo.get_comments(bulletin['sender'], bulletin['timestamp'])
+        return HttpResponseRedirect('bulletin')
     except Exception as e:
         print("\tERROR\tFailed to send bulletin comment: " + str(e))
         return redirect(error_message)
@@ -52,7 +53,10 @@ def createBulletin(request):
 def bulletin(request):
     bulletinString = request.POST['bulletin']
     bulletin = ast.literal_eval(bulletinString)
-    comments = Dynamo.get_comments(bulletin['sender'], Decimal(bulletin['timestamp']))
+    bulletin['time'] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(int(bulletin["timestamp"])))
+    comments = Dynamo.get_comments(bulletin['sender'], bulletin['timestamp'])
+    for comment in comments:
+            comment["timestamp"] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(comment["timestamp"]))
     return render(request, 'bulletin.html', {'bulletin':bulletin, 'comment_list':comments})
 
 def error_message():

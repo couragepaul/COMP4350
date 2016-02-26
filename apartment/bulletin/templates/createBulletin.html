@@ -78,13 +78,17 @@
     </header>
 
     <div class="container">
-        <h3><font color="white">Message</font></h3>
 
         <div class="panel" style="background: none">
             <form action="sendBulletin" method="post">{% csrf_token %}
-            <textarea name="message" cols="150" rows="5"></textarea>
+                <div class="col-xs-3">
+                    <h3><font color="white">Message</font></h3>
+                    <input class="form-control" name="subject" type="text" placeholder="Subject">
+                    <textarea name="message" cols="150" rows="5"></textarea>
+                    <button class="btn btn-default" type="submit">Create Bulletin</button>
+                </div>
             <div class="form-group">
-                <button class="btn btn-default" type="submit">Create Bulletin</button>
+
             </div>
             </form>
         </div>
