@@ -5,6 +5,8 @@ from django.views import generic
 from django.http import HttpResponse
 from django.contrib.auth.models import User
 
+from .message import Message
+from rest.serializers import MessageSerializer
 from lib.dynamo import Dynamo
 
 
@@ -14,18 +16,18 @@ def create_message_view(request):
 
 def send_message(request):
     try:
-        user = User.objects.get(username=str(request.POST['send_to']))
-        to_send = {
-            'sender': 'test',
-            'recipient': user.username,
-            'urgency': int(request.POST['urgency']),
-            'content': str(request.POST['message']),
-            'timestamp': int(time.time()),
-            'read': False
-        }
+        user = 'test'#User.objects.get(username=str(request.POST['name'])).username
+        to_send = Message(
+            sender='test',
+            recipient=user,
+            urgency=int(request.POST['urgency']),
+            content=str(request.POST['message']),
+            timestamp=int(time.time()),
+            read=False
+        )
 
-        Dynamo.initialize().send_message(to_send)
-        Dynamo.get_messages_by_recipient(user.username)
+        Dynamo.initialize().send_message(MessageSerializer(to_send).data)
+        Dynamo.get_messages_by_recipient(user)
 
         return redirect(sent_message_view)
     except Exception as e:
@@ -37,7 +39,7 @@ def sent_message_view(request):
     return render(request, 'sentMessage.html')
 
 
-def error_message():
+def error_message(request):
     html = "Error creating message"
     return HttpResponse(html)
 
