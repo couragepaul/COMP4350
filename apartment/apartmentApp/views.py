@@ -34,7 +34,10 @@ def home(request):
 
 def createUser(request):
     user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
-    return render(request, 'home.html')
+    if request.POST.get('isStaff', False):
+        user.is_staff=True 
+        user.save()
+    return render(request, 'managerSettings.html')
 
 
 def deleteUser(request):
