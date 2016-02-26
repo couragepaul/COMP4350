@@ -3,6 +3,11 @@ from django.shortcuts import render
 
 from lib.dynamo import Dynamo
 
+from django.shortcuts import render, redirect
+from django.http import HttpResponse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+
 
 def sendBulletin(request):
     try:
@@ -32,12 +37,18 @@ def sendComment(request):
 
 
 def bulletinBoard(request):
-    return render(request, 'bulletinBoard.html')
+    if request.user.is_authenticated():
+        return render(request,'bulletinBoard.html')
+    return redirect("../")
 
 def createBulletin(request):
-    return render(request, 'createBulletin.html')
+    if request.user.is_authenticated():
+        return render(request,'createBulletin.html')
+    return redirect("../")
 
 def bulletin(request, bulletin_id):
-    return render(request, 'bulletin.html')
+    if request.user.is_authenticated():
+        return render(request,'bulletin.html')
+    return redirect("../")
 
 

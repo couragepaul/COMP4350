@@ -29,7 +29,9 @@ def invalidLogin(request):
 
 
 def home(request):
-    return render(request,'home.html')
+    if request.user.is_authenticated():
+        return render(request,'home.html')
+    return redirect(logoutUser)
 
 
 def createUser(request):
@@ -37,14 +39,20 @@ def createUser(request):
     if request.POST.get('isStaff', False):
         user.is_staff=True 
         user.save()
-    return render(request, 'managerSettings.html')
+    if request.user.is_authenticated():
+        return render(request, 'managerSettings.html')
+    return redirect(logoutUser)
 
 
 def deleteUser(request):
     user = User.objects.get(username=request.POST['deleteUsername'])
     user.delete()
-    return render(request, 'home.html')
+    if request.user.is_authenticated():
+        return render(request,'home.html')
+    return redirect(logoutUser)
 
 
 def managerSettings(request):
-    return render(request,'managerSettings.html')
+    if request.user.is_authenticated() and request.user.is_staff:
+        return render(request,'managerSettings.html')
+    return redirect(logoutUser)
