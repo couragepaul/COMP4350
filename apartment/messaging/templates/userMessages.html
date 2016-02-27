@@ -84,7 +84,8 @@
             {# Urgency #}
             <td>{{message.urgency}}</td>
           </tr>
-          <input name="message" type="hidden" value="{{ message }}" />
+          <input name="messageRecipient" type="hidden" value="{{ message.recipient }}" />
+          <input name="messageTimestamp" type="hidden" value="{{ message.timestamp }}" />
       </form>
           {% endfor %}
       {% else %}

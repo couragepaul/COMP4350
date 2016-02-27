@@ -7,3 +7,4 @@ python-dateutil==2.4.2
 six==1.10.0
 wheel==0.29.0
 djangorestframework==3.3.2
+markdown==2.6.5

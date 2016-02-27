@@ -127,7 +127,8 @@
             <div class="form-group">
                 {% csrf_token %}
                 <input class="form-control" name="message" type="text" placeholder="Your comments" />
-                <input name="bulletin" type="hidden" value="{{ bulletin }}" />
+                <input name="bulletinSender" type="hidden" value="{{ bulletin.sender }}" />
+                <input name="bulletinTimestamp" type="hidden" value="{{ bulletin.timestamp }}" />
             </div>
             <div class="form-group">
                 <input class="btn btn-default" type="submit" value="Add">

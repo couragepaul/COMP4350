@@ -23,7 +23,7 @@ def sendBulletin(request):
         }
 
 
-        Dynamo.initialize().send_bulletin(BulletinSerializer(to_send).data)
+        Dynamo.initialize().send_bulletin(BulletinSerializer(bulletin).data)
         return redirect(createBulletin)
     except Exception as e:
         print("\tERROR\tFailed to create bulletin: " + str(e))
@@ -31,20 +31,22 @@ def sendBulletin(request):
 
 def sendComment(request):
     try:
-        bulletinString = request.POST['bulletin']
-        bulletin = ast.literal_eval(bulletinString)
+        bulletin_reference = request.POST['bulletinSender'] + ':' + request.POST['bulletinTimestamp']
+
+
         comment = {
             'sender': 'test',
             'content': str(request.POST['message']),
-            'bulletin_reference': bulletin['sender'] + ':' + bulletin['timestamp'],
+            'bulletin_reference': bulletin_reference,
             'timestamp': int(time.time())
         }
 
         Dynamo.initialize().send_comment(comment)
-        comments = Dynamo.get_comments(bulletin['sender'], bulletin['timestamp'])
-        for comment in comments:
-            comment["timestamp"] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(comment["timestamp"]))
-        return render(request, 'bulletin.html', {'bulletin':bulletin, 'comment_list':comments})
+        comments = Dynamo.get_comments(Dynamo.get_bulletin_by_reference(bulletin_reference))
+
+        # for comment in comments:
+        #     comment["timestamp"] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(comment["timestamp"]))
+        return render(request, 'bulletin.html', {'bulletin': bulletin_reference, 'comment_list':comments})
     except Exception as e:
         print("\tERROR\tFailed to send bulletin comment: " + str(e))
         return redirect(error_comment)
@@ -53,8 +55,6 @@ def sendComment(request):
 def bulletinBoard(request):
     if request.user.is_authenticated():
         bulletins = Dynamo.get_bulletins()
-        for bulletin in bulletins:
-            bulletin["timestamp"] = str(bulletin["timestamp"])
         return render(request, 'bulletinBoard.html', {"bulletin_list": bulletins})
     return redirect("../")
 
@@ -65,15 +65,16 @@ def createBulletin(request):
     return redirect("../")
 
 
-def bulletin(request):
+def viewBulletin(request):
     if request.user.is_authenticated():
-        bulletinString = request.POST['bulletin']
-        bulletin = ast.literal_eval(bulletinString)
-        bulletin['time'] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(int(bulletin["timestamp"])))
-        comments = Dynamo.get_comments(bulletin['sender'], bulletin['timestamp'])
-        for comment in comments:
-            comment["timestamp"] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(comment["timestamp"]))
-        return render(request, 'bulletin.html', {'bulletin':bulletin, 'comment_list':comments})
+        bulletin = Dynamo.get_bulletin_by_reference(
+            request.POST['bulletinSender'] + ':' + request.POST['bulletinTimestamp']
+        )
+
+        comments = Dynamo.get_comments(bulletin)
+        # for comment in comments:
+        #     comment["timestamp"] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(comment["timestamp"]))
+        return render(request, 'bulletin.html', {'bulletin': bulletin, 'comment_list': comments})
     return redirect("../")
 
 def error_bulletin():

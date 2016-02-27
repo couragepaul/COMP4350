@@ -19,7 +19,7 @@ def create_message_view(request):
 
 def send_message(request):
     try:
-        user = 'test'#User.objects.get(username=str(request.POST['name'])).username
+        user = User.objects.get(username=str(request.POST['username'])).username
         to_send = Message(
             sender='test',
             recipient=user,
@@ -49,15 +49,12 @@ def error_message(request):
     return HttpResponse(html)
 
 
-def message(request, recipient):
-    messageString = request.POST['message']
-    message = ast.literal_eval(messageString)
-    message['read'] = True
-    message['timestamp'] = int(message['timestamp'])
-    message['urgency'] = int(message['urgency'])
-    del message['time']
-    #Dynamo.update_message(message)
-    message["timestamp"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(message["timestamp"]))
+def message(request, message):
+    message = dict()
+    message['recipient'] = request.POST['messageRecipient']
+    message['timestamp'] = int(request.POST['messageTimestamp'])
+
+    message = Dynamo.get_message(message)
     return render(request, 'message.html', {"msg": message})
 
 
@@ -68,10 +65,10 @@ class UserMessages(generic.ListView):
     def get_queryset(self):
         user = get_object_or_404(User, username=self.args[0])
         messages = Dynamo.get_messages_by_recipient(user.username)
-        for msg in messages:
-            msg["time"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(msg["timestamp"]))
-            msg["timestamp"] = str(msg["timestamp"])
-            msg["urgency"] = str(msg["urgency"])
+        # for msg in messages:
+        #     msg["time"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(msg["timestamp"]))
+        #     msg["timestamp"] = str(msg["timestamp"])
+        #     msg["urgency"] = str(msg["urgency"])
         return messages
 
 
