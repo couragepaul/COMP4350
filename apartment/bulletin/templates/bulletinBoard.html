@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bulletin Board</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'apartmentApp/3-col-portfolio.css' %}" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="../home">Apartment App</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="../createMessageView">Messages</a>
+                </li>
+                <li>
+                    <a href="../bulletinBoard">Bulletin</a>
+                </li>
+				{% if request.user.is_staff %}
+					<li>
+						<a href="../managerSettings">Manager Settings</a>
+					</li>
+				{% endif %}
+				<li>
+                    <a href="../logoutUser">Log Out</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-10">
+                <h1 class="page-header">
+                    <font color="white">Bulletin Board</font>
+                    <form action="createBulletin" method="post">{% csrf_token %}<button class="btn btn-default" type="submit">New Bulletin</button></form>
+                </h1>
+
+            </div>
+        </div>
+        <!-- /.row -->
+
+        {% if bulletin_list %}
+            {% for bulletin in bulletin_list %}
+            <form action="viewBulletin" method="post">{% csrf_token %}
+                <input name="bulletinSender" type="hidden" value="{{ bulletin.sender }}" />
+                <input name="bulletinTimestamp" type="hidden" value="{{ bulletin.timestamp }}" />
+            <div class="col-md-3 portfolio-item" >
+                <a>
+                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
+                </a>
+
+                <h3>
+                    <a style="text-align:left;"><script>document.write("{{bulletin.subject}}")</script>
+                    <span style="float:right;"><button class="btn btn-default" type="submit">Details</button></span>
+                    </a>
+                </h3>
+                <p><script>document.write("{{bulletin.content}}")</script></p>
+
+            </div>
+            </form>
+            {% endfor %}
+        {% else %}
+          <p>No bulletins are available.</p>
+        {% endif %}
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

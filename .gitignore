@@ -1,3 +1,6 @@
+apartment/db.sqlite3
+*.pyc
+.idea/
 Include/
 Lib/
 Scripts/

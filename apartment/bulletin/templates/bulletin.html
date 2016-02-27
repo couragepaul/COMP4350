@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Bulletin</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="{% static 'apartmentApp/half-slider.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'apartmentApp/style.css' %}" />
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home">Apartment App</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="createMessageView">Messages</a>
+                </li>
+                <li>
+                    <a href="bulletinBoard">Bulletin</a>
+                </li>
+				{% if request.user.is_staff %}
+					<li>
+						<a href="managerSettings">Manager Settings</a>
+					</li>
+				{% endif %}
+				<li>
+                    <a href="logoutUser">Log Out</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+    <!-- Half Page Image Background Carousel Header -->
+    <header id="myCarousel" class="carousel slide">
+        <!-- Indicators -->
+
+        <!-- Wrapper for Slides -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <!-- Set the first background image using inline CSS below. -->
+                <div class="fill" style="background-image:url('http://placehold.it/1900x1080&text=Photo');"></div>
+            </div>
+        </div>
+
+    </header>
+
+    <div class="container">
+        <h2><font color="white"><script>
+            document.write("{{bulletin.subject}}")
+        </script></font></h2>
+        <h3><font color="white"><script>
+            document.write("{{bulletin.sender}}")
+        </script></font></h3>
+        <h4><font color="white"><script>
+          document.write("{{bulletin.time}}");
+        </script></font></h4>
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <p class="lead"><script>
+                   document.write("{{bulletin.content}}");
+                </script></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="detailBox">
+    <div class="titleBox">
+      <label>Comment Box</label>
+        <button type="button" class="close" aria-hidden="true">&times;</button>
+    </div>
+    <div class="actionBox">
+        <ul class="commentList">
+            {% if comment_list %}
+                {% for comment in comment_list %}
+                <li>
+                    <div class="commenterImage">
+                        <img src="http://lorempixel.com/50/50/people/6" />
+                    </div>
+                    <div class="commentText">
+                        <p class=""><script>document.write("{{comment.content}}")</script></p> <span class="date sub-text"><script>document.write("{{comment.timestamp}}")</script></span>
+                    </div>
+                </li>
+                {% endfor %}
+            {% else %}
+                <p>No comments are available.</p>
+            {% endif %}
+        </ul>
+        <form class="form-inline" role="form" action="sendComment" method="post">
+            <div class="form-group">
+                {% csrf_token %}
+                <input class="form-control" name="message" type="text" placeholder="Your comments" />
+                <input name="bulletinSender" type="hidden" value="{{ bulletin.sender }}" />
+                <input name="bulletinTimestamp" type="hidden" value="{{ bulletin.timestamp }}" />
+            </div>
+            <div class="form-group">
+                <input class="btn btn-default" type="submit" value="Add">
+            </div>
+        </form>
+    </div>
+</div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

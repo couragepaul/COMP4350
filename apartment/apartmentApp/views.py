@@ -1,24 +1,16 @@
-import boto3
-import json
-import time
-import ast
-from django.shortcuts import render, redirect, get_object_or_404
-from django.views import generic
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-
-from . import dynamo
 
 
 def index(request):
-    return render(request,'login.html')
+    return render(request, 'login.html')
 
 
 def loggedin(request):
-    username = request.POST['username']
-    password = request.POST['password']
+    username = request.POST.get('username')
+    password = request.POST.get('password')
     user = authenticate(username= username, password= password)
     if user is not None:
         login(request, user)
@@ -37,67 +29,30 @@ def invalidLogin(request):
 
 
 def home(request):
-    return render(request,'home.html')
+    if request.user.is_authenticated():
+        return render(request,'home.html')
+    return redirect(logoutUser)
 
 
 def createUser(request):
     user = User.objects.create_user(request.POST['username'], request.POST['email'], request.POST['password'])
-    return render(request, 'home.html')
+    if request.POST.get('isStaff', False):
+        user.is_staff=True 
+        user.save()
+    if request.user.is_authenticated():
+        return render(request, 'managerSettings.html')
+    return redirect(logoutUser)
 
 
 def deleteUser(request):
-    user = User.objects.get(username=request.POST['username'])
+    user = User.objects.get(username=request.POST['deleteUsername'])
     user.delete()
-    return render(request, 'home.html')
+    if request.user.is_authenticated():
+        return render(request,'home.html')
+    return redirect(logoutUser)
 
 
-def createMessageView(request):
-    return render(request,'createMessage.html')
-
-
-def sendMessage(request):
-    try:
-        user = User.objects.get(username=str(request.POST['send_to']))
-        message = {
-            'sender': 'test',
-            'recipient': user.username,
-            'urgency': int(request.POST['urgency']),
-            'content': str(request.POST['message']),
-            'timestamp': int(time.time()),
-            'read': False
-        }
-
-        dynamo.Dynamo().send_message(message)
-
-        dynamo.Dynamo().get_message_by_recipient(user.username)
-
-        return redirect(sentMessageView)
-    except Exception as e:
-        print(e)
-        return redirect(errorMessage)
-
-
-def sentMessageView(request):
-    return render(request, 'sentMessage.html')
-
-
-def errorMessage(request):
-    html = "Error creating message"
-    return HttpResponse(html)
-
-class userMessages(generic.ListView):
-    context_object_name = 'message_list'
-    template_name = 'userMessages.html'
-
-    def get_queryset(self):
-        user = get_object_or_404(User, username=self.args[0])
-        return dynamo.Dynamo().get_message_by_recipient(user.username)
-
-def markAsRead(request, message_id):
-    message = dynamo.Dynamo().get_message_by_id(message_id)
-    message[0]['read'] = True
-    dynamo.Dynamo().update_message(message[0])
-    html = "message has been marked as read"
-    return HttpResponse(html)
-
-
+def managerSettings(request):
+    if request.user.is_authenticated() and request.user.is_staff:
+        return render(request,'managerSettings.html')
+    return redirect(logoutUser)
