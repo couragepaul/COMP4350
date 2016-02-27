@@ -1,5 +1,7 @@
 import boto3
 from messaging.message import Message
+from bulletin.bulletin import Bulletin
+from bulletin.comment import Comment
 from boto3.dynamodb.conditions import Key,Attr
 
 
@@ -86,6 +88,17 @@ class Dynamo:
         print(response)
 
     @staticmethod
+    def get_bulletin_by_reference(reference):
+        Dynamo.initialize()
+        table = Dynamo.dynamodb.Table('se2_bulletin')
+
+        split_ref = reference.split(':')
+        response = table.get_item(Key={'sender': split_ref[0], 'timestamp': int(split_ref[1])})
+
+        bulletin = Bulletin(response['Item'])
+        return bulletin
+
+    @staticmethod
     def get_bulletins():
         Dynamo.initialize()
         table = Dynamo.dynamodb.Table('se2_bulletin')
@@ -94,12 +107,17 @@ class Dynamo:
         return response['Items']
 
     @staticmethod
-    def get_comments(sender, timestamp):
+    def get_comments(bulletin):
         Dynamo.initialize()
-        table = Dynamo.dynamodb.Table('se2_comment')
+        table = Dynamo.dynamodb.Table('se2_bulletin_comment')
 
-        response = table.scan(FilterExpression=Attr('sender').eq(sender) & Attr('timestamp').eq(timestamp))
-        return response['Items']
+        response = table.query(KeyConditionExpression=Key('bulletin_reference').eq(bulletin.get_reference()))
+        comments = list()
+
+        for item in response['Items']:
+            comments.append(Comment(item))
+
+        return comments
 
     @staticmethod
     def update_message(message):
