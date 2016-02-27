@@ -7,6 +7,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from lib.dynamo import Dynamo
 
 
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+
+
 def sendBulletin(request):
     try:
         bulletin = {
@@ -44,22 +48,30 @@ def sendComment(request):
 
 
 def bulletinBoard(request):
-    bulletins = Dynamo.get_bulletins()
-    for bulletin in bulletins:
+    if request.user.is_authenticated():
+        bulletins = Dynamo.get_bulletins()
+        for bulletin in bulletins:
             bulletin["timestamp"] = str(bulletin["timestamp"])
-    return render(request, 'bulletinBoard.html', {"bulletin_list": bulletins})
+        return render(request, 'bulletinBoard.html', {"bulletin_list": bulletins})
+    return redirect("../")
+
 
 def createBulletin(request):
-    return render(request, 'createBulletin.html')
+    if request.user.is_authenticated():
+        return render(request,'createBulletin.html')
+    return redirect("../")
+
 
 def bulletin(request):
-    bulletinString = request.POST['bulletin']
-    bulletin = ast.literal_eval(bulletinString)
-    bulletin['time'] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(int(bulletin["timestamp"])))
-    comments = Dynamo.get_comments(bulletin['sender'], bulletin['timestamp'])
-    for comment in comments:
+    if request.user.is_authenticated():
+        bulletinString = request.POST['bulletin']
+        bulletin = ast.literal_eval(bulletinString)
+        bulletin['time'] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(int(bulletin["timestamp"])))
+        comments = Dynamo.get_comments(bulletin['sender'], bulletin['timestamp'])
+        for comment in comments:
             comment["timestamp"] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(comment["timestamp"]))
-    return render(request, 'bulletin.html', {'bulletin':bulletin, 'comment_list':comments})
+        return render(request, 'bulletin.html', {'bulletin':bulletin, 'comment_list':comments})
+    return redirect("../")
 
 def error_message():
     html = "Error creating message"

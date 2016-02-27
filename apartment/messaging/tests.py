@@ -65,6 +65,19 @@ class MessageTestCase(TestCase):
         message.save()
         self.assertFalse(Message.objects.get(message_id = message_id))
 
+    def test_message_create_no_urgency_selected(self):
+        message_id = 0
+        timestamp = datetime.datetime.now()
+        message_text = 'Hello, tenant'
+        urgency = ''
+        sent_to = 'Room1 the Tester'
+        sent_by = 'manager'
+        has_read = False
+        message = Message(message_id=message_id,pub_date=timestamp,message_text=message_text,urgency=urgency,
+                          sent_to=sent_to,sent_by=sent_by,has_read=has_read)
+        message.save()
+        self.assertFalse(Message.objects.get(message_id = message_id))
+
     def test_message_mark(self):
         message = Dynamo.get_message_by_id(message_id=1000)
         message[0]['read'] = True

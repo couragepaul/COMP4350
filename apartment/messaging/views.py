@@ -4,12 +4,15 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 from lib.dynamo import Dynamo
 
 
 def create_message_view(request):
-    return render(request, 'createMessage.html')
+    if request.user.is_authenticated():
+        return render(request,'createMessage.html')
+    return redirect("../apartmentApp")
 
 
 def send_message(request):
@@ -34,7 +37,9 @@ def send_message(request):
 
 
 def sent_message_view(request):
-    return render(request, 'sentMessage.html')
+    if request.user.is_authenticated():
+        return render(request,'sentMessage.html')
+    return redirect("../apartmentApp")
 
 
 def error_message():

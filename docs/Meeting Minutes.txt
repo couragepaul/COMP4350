@@ -101,3 +101,72 @@ Thursday Feb 4
 	- For iteration 2, features decided on are
 		- Bulletin user stories
 		- Addition of an proper front-end
+
+Thursday Feb 11 
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Overview of what was finished in iteration 1 
+- Decisions about what to do for Iteration 2
+	- add more tests to the application
+	- ensure that sufficient tests are added to the features that will be implemented
+	- bulletin features are the ones that will be implemented
+- Waiting on the actual posts from Mr. Hemmati to see what we actually need to have done for this next iteration
+
+Tuesday Feb 16
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Design meeting for the front-end of the application
+	- Single page application that uses bootstrap to help it out
+	- Designs meeting had
+		- login page
+		- messages page
+		- admin page
+		- bulletin page
+		- all of these pages have simple designs
+		- each member of the group came up with at least 2 designs in total
+			- required for us to have for this meeting
+- Further discussion about the required things for iteration 2 handin
+	- decision for next iteration for our own project is the calendar part of the application
+
+Saturday Feb 20
+- Online meeting on skype
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Contributions for this project so far has been a group effort, everyone puts their effort into this project
+- Meeting about our current progress for iteration 2
+	- Current iteration features chosen are the bulletin features
+		- Please refer to the planning document that has all the features to have an updated cost
+		- The document name is Project Stories, please refer to that
+	- Next iteration will have the calendar features be implemented
+		- once again please refer to the project stories document in the document folder, that has the estimated hours(cost) that it would take to do the features
+		- this was also evident in the last iteration
+			- this is the document that gets updated as we go along in the iterations
+- Current plan
+	- Finish any more work on the front-end that is required
+		- polishing pages - jourey, nick, courage, tim
+	- Research Selenium for front end automated testing
+		- jourey and qing to research about this
+	- Add Bulletins tables to the application to use 
+		- josh
+	- attach the bulletin front-end with the bulletin back-end
+		- tim
+	- Establish the amazon web service
+		- josh
+	- Add more tests to the application
+		- qing, courage
+
+Tuesday Feb 23
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Discussion about Iteration 2 requirements and things that need to get finished
+	- REST API and Amazon Web service
+		- handled by Josh
+	- Front-end schema and other pages
+		- nick, tim and courage
+	- Selenium and front-end testing
+		- jourey and qing
+	- addition of any other tests required in the backend
+		- anyone that has time
+
+Thursday Feb 25
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Checklist of the current finished products, review over things that need to be finished
+	- all discussions during this meetings was to just go over to make sure everything that was assigned on tuesday to each member is fine
+	- there were no problems as of this meeting so everything should be fine going ahead
+	- nothing to add in the meeting minutes
