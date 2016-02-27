@@ -12,7 +12,7 @@ def loginSession(self):
     username = "COMP4350_SU"
     password = "COMP4350_PW"
     #username
-    name = self.driver.find_element_by_name("username")
+    name = self.driver.find_element_by_id("username")
     name.send_keys(Keys.CONTROL + "a")
     name.send_keys(Keys.DELETE)
     name.send_keys(username)
@@ -66,7 +66,7 @@ class ApartmentSendMessageTestCase(unittest.TestCase):
         msg = "test message from selenium"
         urg = "1"
         #username
-        name = self.driver.find_element_by_id("name")
+        name = self.driver.find_element_by_name("username")
         name.send_keys(username)
         #message
         message = self.driver.find_element_by_name("message")
@@ -107,7 +107,7 @@ class ApartmentBulletinBoardTestCase(unittest.TestCase):
         # self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard/createBulletin")
         self.driver.get(baseURL + "/bulletinBoard/createBulletin")
         subject = self.driver.find_element_by_name("subject")
-        subject.send_keys("Selenium")
+        subject.send_keys("Testing")
         content = self.driver.find_element_by_name("message")
         content.send_keys("Attention! This is a test bulletin from selenium")
         create = '//button[text()="Create Bulletin"]'

@@ -37,7 +37,6 @@ class BulletinPostTestCase(TestCase):
         bulletin.save()
         self.assertFalse(BulletinPost.objects.get(bulletin_id=bulletin_id))
 
-
     def test_bulletin_delete(self):
         bulletin_id = 0;
         pub_date = datetime.datetime.now()
@@ -116,3 +115,4 @@ class BulletinReplyTestCase(TestCase):
         comment.save()
         BulletinReply.objects.get(replied_to = bulletin.bulletin_id)
         self.assertTrue(BulletinReply.objects.get(replied_to = bulletin.bulletin_id).delete())
+
