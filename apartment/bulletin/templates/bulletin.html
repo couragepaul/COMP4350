@@ -31,37 +31,42 @@
 
 <body>
 
-    <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">One-to-All</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Messages</a>
-                    </li>
-                    <li>
-                        <a href="#">Bulletin Board</a>
-                    </li>
-                    <li>
-                        <a href="#">Calendar</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home">Apartment App</a>
         </div>
-        <!-- /.container -->
-    </nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="createMessageView">Messages</a>
+                </li>
+                <li>
+                    <a href="bulletinBoard">Bulletin</a>
+                </li>
+				{% if request.user.is_staff %}
+					<li>
+						<a href="managerSettings">Manager Settings</a>
+					</li>
+				{% endif %}
+				<li>
+                    <a href="logoutUser">Log Out</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
 
     <!-- Half Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">
@@ -78,12 +83,15 @@
     </header>
 
     <div class="container">
-        <h3><script>
-            document.write("{{bulletin.post_by}}")
-        </script></h3>
-        <h4><script>
-          document.write("{{bulletin.timestamp}}");
-        </script></h4>
+        <h2><font color="white"><script>
+            document.write("{{bulletin.subject}}")
+        </script></font></h2>
+        <h3><font color="white"><script>
+            document.write("{{bulletin.sender}}")
+        </script></font></h3>
+        <h4><font color="white"><script>
+          document.write("{{bulletin.time}}");
+        </script></font></h4>
         <div class="panel panel-default">
             <div class="panel-body">
                 <p class="lead"><script>
@@ -98,46 +106,31 @@
       <label>Comment Box</label>
         <button type="button" class="close" aria-hidden="true">&times;</button>
     </div>
-    <div class="commentBox">
-
-        <p class="taskDescription">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
-    </div>
     <div class="actionBox">
         <ul class="commentList">
-            <li>
-                <div class="commenterImage">
-                  <img src="http://lorempixel.com/50/50/people/6" />
-                </div>
-                <div class="commentText">
-                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                </div>
-            </li>
-            <li>
-                <div class="commenterImage">
-                  <img src="http://lorempixel.com/50/50/people/7" />
-                </div>
-                <div class="commentText">
-                    <p class="">Hello this is a test comment and this comment is particularly very long and it goes on and on and on.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                </div>
-            </li>
-            <li>
-                <div class="commenterImage">
-                  <img src="http://lorempixel.com/50/50/people/9" />
-                </div>
-                <div class="commentText">
-                    <p class="">Hello this is a test comment.</p> <span class="date sub-text">on March 5th, 2014</span>
-
-                </div>
-            </li>
+            {% if comment_list %}
+                {% for comment in comment_list %}
+                <li>
+                    <div class="commenterImage">
+                        <img src="http://lorempixel.com/50/50/people/6" />
+                    </div>
+                    <div class="commentText">
+                        <p class=""><script>document.write("{{comment.content}}")</script></p> <span class="date sub-text"><script>document.write("{{comment.timestamp}}")</script></span>
+                    </div>
+                </li>
+                {% endfor %}
+            {% else %}
+                <p>No comments are available.</p>
+            {% endif %}
         </ul>
-        <form class="form-inline" role="form">
+        <form class="form-inline" role="form" action="sendComment" method="post">
             <div class="form-group">
-                <input class="form-control" type="text" placeholder="Your comments" />
+                {% csrf_token %}
+                <input class="form-control" name="message" type="text" placeholder="Your comments" />
+                <input name="bulletin" type="hidden" value="{{ bulletin }}" />
             </div>
             <div class="form-group">
-                <button class="btn btn-default">Add</button>
+                <input class="btn btn-default" type="submit" value="Add">
             </div>
         </form>
     </div>

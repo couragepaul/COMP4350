@@ -8,5 +8,5 @@ urlpatterns = [
     url(r'^sendMessage', views.send_message, name='sendMessage'),
     url(r'^errorMessage', views.error_message, name='errorMessage'),
     url(r'^(\w+)/$', views.UserMessages.as_view(), name='userMessages'),
-    #url(r'^(\w+)/(?P<message_id>[0-9]+)', views.message, name='message'),
+    url(r'^(\w+)/message', views.message, name='message'),
 ]

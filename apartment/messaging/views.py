@@ -1,15 +1,18 @@
 import time
-
+import ast
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import generic
 from django.http import HttpResponse
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login, logout
 
 from lib.dynamo import Dynamo
 
 
 def create_message_view(request):
-    return render(request, 'createMessage.html')
+    if request.user.is_authenticated():
+        return render(request,'createMessage.html')
+    return redirect("../apartmentApp")
 
 
 def send_message(request):
@@ -34,7 +37,9 @@ def send_message(request):
 
 
 def sent_message_view(request):
-    return render(request, 'sentMessage.html')
+    if request.user.is_authenticated():
+        return render(request,'sentMessage.html')
+    return redirect("../apartmentApp")
 
 
 def error_message():
@@ -42,12 +47,16 @@ def error_message():
     return HttpResponse(html)
 
 
-# def message(request, message_id):
-#     get_message = Dynamo.get_message(recipient, )[0]
-#     get_message['read'] = True
-#     Dynamo.update_message(get_message)
-#     get_message["timestamp"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(get_message["timestamp"]))
-#     return render(request, 'message.html', {"msg": get_message})
+def message(request, recipient):
+    messageString = request.POST['message']
+    message = ast.literal_eval(messageString)
+    message['read'] = True
+    message['timestamp'] = int(message['timestamp'])
+    message['urgency'] = int(message['urgency'])
+    del message['time']
+    #Dynamo.update_message(message)
+    message["timestamp"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(message["timestamp"]))
+    return render(request, 'message.html', {"msg": message})
 
 
 class UserMessages(generic.ListView):
@@ -56,9 +65,11 @@ class UserMessages(generic.ListView):
 
     def get_queryset(self):
         user = get_object_or_404(User, username=self.args[0])
-        messages = Dynamo.get_message_by_recipient(user.username)
+        messages = Dynamo.get_messages_by_recipient(user.username)
         for msg in messages:
-            msg["timestamp"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(msg["timestamp"]))
+            msg["time"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(msg["timestamp"]))
+            msg["timestamp"] = str(msg["timestamp"])
+            msg["urgency"] = str(msg["urgency"])
         return messages
 
 

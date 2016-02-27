@@ -13,36 +13,41 @@
 <body>
 
 <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">One-to-All</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Messages</a>
-                    </li>
-                    <li>
-                        <a href="#">Bulletin</a>
-                    </li>
-                    <li>
-                        <a href="#">Calendar</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+<nav class="navbar navbar-inverse navbar-top" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home">Apartment App</a>
         </div>
-        <!-- /.container -->
-    </nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="createMessageView">Messages</a>
+                </li>
+                <li>
+                    <a href="bulletinBoard">Bulletin</a>
+                </li>
+				{% if request.user.is_staff %}
+					<li>
+						<a href="managerSettings">Manager Settings</a>
+					</li>
+				{% endif %}
+				<li>
+                    <a href="logoutUser">Log Out</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
 
 <div class="container">
   <h2>Messages</h2>
@@ -58,36 +63,25 @@
       {% if message_list %}
           {% for message in message_list %}
           {# active = white, info = blue, warning = orange, danger = red, success = green #}
-
+      <form id="{{ message.timestamp }}" action="message" method="post">{% csrf_token %}
           {% if message.read == True %}
-            <tr class="info" data-href="{% url 'message' message.recipient message.message_id %}">
+            <tr class="info" onclick="document.getElementById('{{ message.timestamp }}').submit()">
           {% else %}
-            {% if message.urgency <= 3 %}
-              {% if message.urgency == 1 %}
-                <tr class="danger" data-href="{% url 'message' message.recipient message.message_id %}">
-              {% else %}
-                <tr class="info" data-href="{% url 'message' message.recipient message.message_id %}">
-              {% endif %}
-            {% else %}
-              <tr class="active" data-href="{% url 'message' message.recipient message.message_id %}">
-            {% endif %}
+              <tr class="active" onclick="document.getElementById('{{ message.timestamp }}').submit()">
           {% endif %}
             {# date #}
-            <td>{{message.timestamp}}</td>
+            <td>{{message.time}}</td>
             {# Message #}
             <td>{{message.content}}</td>
             {# Urgency #}
             <td>{{message.urgency}}</td>
           </tr>
+          <input name="message" type="hidden" value="{{ message }}" />
+      </form>
           {% endfor %}
       {% else %}
           <p>No messages are available.</p>
       {% endif %}
-    <script>
-      $('.table > tbody > tr').click(function() {
-        window.document.location = $(this).data("href");
-      });
-    </script>
     </tbody>
   </table>
 </div>
