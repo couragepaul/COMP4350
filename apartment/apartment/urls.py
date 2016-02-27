@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^apartmentApp/', include('bulletin.urls')),
     url(r'^apartmentApp/', include('messaging.urls')),
-
+    url(r'', include('rest.urls'))
 ]
