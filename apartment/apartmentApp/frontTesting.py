@@ -111,8 +111,8 @@ class ApartmentBulletinBoardTestCase(unittest.TestCase):
         createButton.click()
 
     def test_add_comment(self):
-        url should be changed to bulletin url
-        need to double check this test TODO: fix test to work with proper bulletins
+        # url should be changed to bulletin url
+        # need to double check this test TODO: fix test to work with proper bulletins
         self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard/10")
         self.driver.get(baseURL + "/bulletinBoard/10")
         comment = self.driver.find_element_by_class_name("message")
