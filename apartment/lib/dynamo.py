@@ -14,9 +14,9 @@ class Dynamo:
         # If you don't feel like setting environment variables for boto3 on your machine,
         # you can hard code them here for testing.
 
-        # boto3.setup_default_session(
-        # aws_access_key_id = XXXXX,
-        # aws_secret_access_key = YYYYY
+        #boto3.setup_default_session(
+        #aws_access_key_id = XXXXX,
+        #aws_secret_access_key = YYYYY
         # )
 
         if Dynamo.dynamodb is None:
