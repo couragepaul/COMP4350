@@ -92,7 +92,7 @@ class ApartmentBulletinBoardTestCase(unittest.TestCase):
 
     def test_jump_from_bulletin_board_to_create_new_bulletin_page(self):
         # url should be changed to bulletin board url
-        self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard")
+        # self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard")
         self.driver.get(baseURL + "/bulletinBoard")
         create = '//button[text()="New Bulletin"]'
         createButton = self.driver.find_element_by_xpath(create)
@@ -113,8 +113,8 @@ class ApartmentBulletinBoardTestCase(unittest.TestCase):
     def test_add_comment(self):
         # url should be changed to bulletin url
         # need to double check this test TODO: fix test to work with proper bulletins
-        self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard/10")
-        self.driver.get(baseURL + "/bulletinBoard/10")
+        # self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard/10")
+        self.driver.get(baseURL + "/bulletinBoard/1")
         comment = self.driver.find_element_by_class_name("message")
         comment.send_keys("This is a test comment from selenium")
         add = '//button[text()="Add"]'
