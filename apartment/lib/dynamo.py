@@ -67,25 +67,21 @@ class Dynamo:
 
         return messages
 
-    # @staticmethod
-    # def get_message(recipient, timestamp):
-
-
     @staticmethod
     def send_bulletin(bulletin):
         Dynamo.initialize()
         table = Dynamo.dynamodb.Table('se2_bulletin')
 
         response = table.put_item(Item=bulletin)
-        print(response)
+        return response
 
     @staticmethod
     def send_comment(comment):
         Dynamo.initialize()
-        table = Dynamo.dynamodb.Table('se2_comment')
+        table = Dynamo.dynamodb.Table('se2_bulletin_comment')
 
         response = table.put_item(Item=comment)
-        print(response)
+        return response
 
     @staticmethod
     def get_bulletin_by_reference(reference):
@@ -104,7 +100,12 @@ class Dynamo:
         table = Dynamo.dynamodb.Table('se2_bulletin')
 
         response = table.scan()
-        return response['Items']
+        bulletins = list()
+
+        for item in response['Items']:
+            bulletins.append(Bulletin(item))
+
+        return bulletins
 
     @staticmethod
     def get_comments(bulletin):
@@ -120,10 +121,19 @@ class Dynamo:
         return comments
 
     @staticmethod
+    def get_message(message):
+        Dynamo.initialize()
+        table = Dynamo.dynamodb.Table('se2_message')
+
+        response = table.get_item(Key={'recipient': message['recipient'], 'timestamp': message['timestamp']})
+        return Message(response['Item'])
+
+    @staticmethod
     def update_message(message):
         Dynamo.initialize()
         table = Dynamo.dynamodb.Table('se2_message')
-        response = table.update_item(Item=message)
+
+        response = table.update_item(Key={'recipient': message.recipient, 'timestamp': message.timestamp})
         print(response)
 
 

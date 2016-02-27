@@ -27,7 +27,7 @@ class Comment(object):
             "sender": "StubSender",
             "content": "Stub Comment Body",
             "timestamp": time.time(),
-            "subject": "Stub Subject"
+            "bulletin_reference": "Stub Reference"
         }
 
 
