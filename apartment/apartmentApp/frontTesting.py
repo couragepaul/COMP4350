@@ -91,7 +91,7 @@ class ApartmentBulletinBoardTestCase(unittest.TestCase):
         loginSession(self)
 
     def test_jump_from_bulletin_board_to_create_new_bulletin_page(self):
-        url should be changed to bulletin board url
+        # url should be changed to bulletin board url
         self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard")
         self.driver.get(baseURL + "/bulletinBoard")
         create = '//button[text()="New Bulletin"]'
