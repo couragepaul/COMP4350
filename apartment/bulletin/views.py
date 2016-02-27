@@ -4,6 +4,8 @@ from decimal import *
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 
+from .bulletin import Bulletin
+from rest.serializers import BulletinSerializer, CommentSerializer
 from lib.dynamo import Dynamo
 
 
@@ -20,11 +22,12 @@ def sendBulletin(request):
             'timestamp': int(time.time())
         }
 
-        Dynamo.initialize().send_bulletin(bulletin)
+
+        Dynamo.initialize().send_bulletin(BulletinSerializer(to_send).data)
         return redirect(createBulletin)
     except Exception as e:
-        print("\tERROR\tFailed to send bulletin: " + str(e))
-        return redirect(error_message)
+        print("\tERROR\tFailed to create bulletin: " + str(e))
+        return redirect(error_bulletin)
 
 def sendComment(request):
     try:
@@ -44,7 +47,7 @@ def sendComment(request):
         return render(request, 'bulletin.html', {'bulletin':bulletin, 'comment_list':comments})
     except Exception as e:
         print("\tERROR\tFailed to send bulletin comment: " + str(e))
-        return redirect(error_message)
+        return redirect(error_comment)
 
 
 def bulletinBoard(request):
@@ -73,8 +76,12 @@ def bulletin(request):
         return render(request, 'bulletin.html', {'bulletin':bulletin, 'comment_list':comments})
     return redirect("../")
 
-def error_message():
-    html = "Error creating message"
+def error_bulletin():
+    html = "Error creating bulletin"
+    return HttpResponse(html)
+
+def error_comment():
+    html = "Error creating comment"
     return HttpResponse(html)
 
 
