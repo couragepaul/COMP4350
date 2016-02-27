@@ -40,6 +40,10 @@ class ApartmentLoginTestCase(unittest.TestCase):
     def test_login(self):
         loginSession(self)
 
+    def test_logout(self):
+        logoutButton = self.driver.find_element_by_link_text("Log Out")
+        logoutButton.click()
+
     def tearDown(self):
         self.driver.close()
 
