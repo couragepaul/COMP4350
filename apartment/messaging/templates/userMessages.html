@@ -58,36 +58,25 @@
       {% if message_list %}
           {% for message in message_list %}
           {# active = white, info = blue, warning = orange, danger = red, success = green #}
-
+      <form id="{{ message.timestamp }}" action="message" method="post">{% csrf_token %}
           {% if message.read == True %}
-            <tr class="info" data-href="{% url 'message' message.recipient message.message_id %}">
+            <tr class="info" onclick="document.getElementById('{{ message.timestamp }}').submit()">
           {% else %}
-            {% if message.urgency <= 3 %}
-              {% if message.urgency == 1 %}
-                <tr class="danger" data-href="{% url 'message' message.recipient message.message_id %}">
-              {% else %}
-                <tr class="info" data-href="{% url 'message' message.recipient message.message_id %}">
-              {% endif %}
-            {% else %}
-              <tr class="active" data-href="{% url 'message' message.recipient message.message_id %}">
-            {% endif %}
+              <tr class="active" onclick="document.getElementById('{{ message.timestamp }}').submit()">
           {% endif %}
             {# date #}
-            <td>{{message.timestamp}}</td>
+            <td>{{message.time}}</td>
             {# Message #}
             <td>{{message.content}}</td>
             {# Urgency #}
             <td>{{message.urgency}}</td>
           </tr>
+          <input name="message" type="hidden" value="{{ message }}" />
+      </form>
           {% endfor %}
       {% else %}
           <p>No messages are available.</p>
       {% endif %}
-    <script>
-      $('.table > tbody > tr').click(function() {
-        window.document.location = $(this).data("href");
-      });
-    </script>
     </tbody>
   </table>
 </div>

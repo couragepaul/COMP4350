@@ -34,8 +34,10 @@ def sendComment(request):
         }
 
         Dynamo.initialize().send_comment(comment)
-        #comments = Dynamo.get_comments(bulletin['sender'], bulletin['timestamp'])
-        return HttpResponseRedirect('bulletin')
+        comments = Dynamo.get_comments(bulletin['sender'], bulletin['timestamp'])
+        for comment in comments:
+            comment["timestamp"] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(comment["timestamp"]))
+        return render(request, 'bulletin.html', {'bulletin':bulletin, 'comment_list':comments})
     except Exception as e:
         print("\tERROR\tFailed to send bulletin comment: " + str(e))
         return redirect(error_message)
