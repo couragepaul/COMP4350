@@ -12,7 +12,7 @@ def loginSession(self):
     username = "tester"
     password = "test"
     #username
-    name = self.driver.find_element_by_name("username")
+    name = self.driver.find_element_by_id("username")
     name.send_keys(Keys.CONTROL + "a")
     name.send_keys(Keys.DELETE)
     name.send_keys(username)
@@ -40,6 +40,10 @@ class ApartmentLoginTestCase(unittest.TestCase):
     def test_login(self):
         loginSession(self)
 
+    def test_logout(self):
+        logoutButton = self.driver.find_element_by_link_text("Log Out")
+        logoutButton.click()
+
     def tearDown(self):
         self.driver.close()
 
@@ -62,7 +66,7 @@ class ApartmentSendMessageTestCase(unittest.TestCase):
         msg = "test message from selenium"
         urg = "1"
         #username
-        name = self.driver.find_element_by_name("name")
+        name = self.driver.find_element_by_name("send_to")
         name.send_keys(username)
         #message
         message = self.driver.find_element_by_name("message")
@@ -102,7 +106,9 @@ class ApartmentBulletinBoardTestCase(unittest.TestCase):
         # url should be changed to create bulletin url
         # self.driver.get("http://127.0.0.1:8000/apartmentApp/bulletinBoard/createBulletin")
         self.driver.get(baseURL + "/bulletinBoard/createBulletin")
-        content = self.driver.find_element_by_name("Text1")
+        subject = self.driver.find_element_by_name("subject")
+        subject.send_keys("Testing")
+        content = self.driver.find_element_by_name("message")
         content.send_keys("Attention! This is a test bulletin from selenium")
         create = '//button[text()="Create Bulletin"]'
         createButton = self.driver.find_element_by_xpath(create)

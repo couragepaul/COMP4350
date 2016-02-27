@@ -35,7 +35,6 @@ def send_message(request):
         print("\tERROR\tFailed to create message: " + str(e))
         return redirect(error_message)
 
-
 def sent_message_view(request):
     if request.user.is_authenticated():
         return render(request,'sentMessage.html')
