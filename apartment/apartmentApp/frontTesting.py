@@ -9,8 +9,8 @@ def loginSession(self):
     #make sure we are in the home page -- uncomment if you want localhost testing
     # self.driver.get("http://127.0.0.1:8000/apartmentApp/")
     self.driver.get(baseURL)
-    username = "tester"
-    password = "test"
+    username = "COMP4350_SU"
+    password = "COMP4350_PW"
     #username
     name = self.driver.find_element_by_name("username")
     name.send_keys(Keys.CONTROL + "a")
