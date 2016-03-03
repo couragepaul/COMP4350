@@ -4,3 +4,4 @@ apartment/db.sqlite3
 Include/
 Lib/
 Scripts/
+apartment/static/
