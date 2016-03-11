@@ -4,7 +4,7 @@ from rest_framework import viewsets
 from rest_framework.decorators import list_route
 from rest_framework.response import Response
 
-from rest.serializers import MessageSerializer, BulletinSerializer, CommentSerializer
+from rest.serializers import MessageSerializer, BulletinSerializer, CommentSerializer, EventSerializer
 from lib.dynamo import Dynamo
 
 
@@ -131,6 +131,32 @@ class CommentViewSet(viewsets.ViewSet):
             serializer.is_valid()
 
             Dynamo.send_comment(serializer.validated_data)
+        except Exception as e:
+            print(e)
+            return Response({
+                'Status': 'Fail',
+                'Data Received': request.data})
+        return Response({
+            'Status': 'Success',
+            'Data Received': request.data})
+
+class EventViewSet(viewsets.ViewSet):
+    '''
+    A ViewSet for sending and retrieving comments.
+    '''
+    def list(self, request):
+        event_list = Dynamo.get_events()
+        serializer = EventSerializer(event_list, many=True)
+        return Response(serializer.data)
+
+    def create(self, request):
+        try:
+            request.data['timestamp'] = str(int(time.time()))
+
+            serializer = EventSerializer(data=request.data)
+            serializer.is_valid()
+
+            Dynamo.send_event(serializer.validated_data)
         except Exception as e:
             print(e)
             return Response({

@@ -2,6 +2,7 @@ import boto3
 from messaging.message import Message
 from bulletin.bulletin import Bulletin
 from bulletin.comment import Comment
+from calendarPage.event import Event
 from boto3.dynamodb.conditions import Key,Attr
 
 
@@ -135,5 +136,26 @@ class Dynamo:
 
         response = table.update_item(Key={'recipient': message.recipient, 'timestamp': message.timestamp})
         print(response)
+
+    @staticmethod
+    def get_events():
+        Dynamo.initialize()
+        table = Dynamo.dynamodb.Table('se2_event')
+
+        response = table.scan()
+        events = list()
+
+        for item in response['Items']:
+            events.append(Event(item))
+
+        return events
+
+    @staticmethod
+    def send_event(event):
+        Dynamo.initialize()
+        table = Dynamo.dynamodb.Table('se2_bulletin')
+
+        response = table.put_item(Item=event)
+        return response
 
 

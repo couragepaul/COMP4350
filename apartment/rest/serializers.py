@@ -22,3 +22,11 @@ class CommentSerializer(serializers.Serializer):
     timestamp = serializers.IntegerField()
     sender = serializers.CharField(max_length=32)
     content = serializers.CharField(max_length=256)
+
+class EventSerializer(serializers.Serializer):
+    timestamp = serializers.IntegerField()
+    sender = serializers.CharField(max_length=32)
+    content = serializers.CharField(max_length=256)
+    starttime = serializers.IntegerField()
+    endtime = serializers.IntegerField()
+    title = serializers.CharField(max_length=256)
