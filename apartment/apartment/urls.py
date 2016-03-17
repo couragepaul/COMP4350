@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^apartmentApp/', include('apartmentApp.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^apartmentApp/', include('bulletin.urls')),
+    url(r'^apartmentApp/', include('calendarPage.urls')),
     url(r'^apartmentApp/', include('messaging.urls')),
     url(r'', include('rest.urls'))
 ]

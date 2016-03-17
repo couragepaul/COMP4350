@@ -59,7 +59,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'apartmentApp/templates/'),
                  os.path.join(BASE_DIR, 'bulletin/templates/'),
-                 os.path.join(BASE_DIR, 'messaging/templates/')],
+                 os.path.join(BASE_DIR, 'messaging/templates/'),
+                 os.path.join(BASE_DIR, 'calendarPage/templates/')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
