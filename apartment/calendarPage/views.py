@@ -1,4 +1,5 @@
 import time
+import datetime
 import ast
 from decimal import *
 from django.shortcuts import render, redirect
@@ -14,26 +15,31 @@ from django.contrib.auth.models import User
 
 def sendEvent(request):
     try:
+        starttime = request.POST['starttime']
+        starttime = time.mktime(datetime.datetime.strptime(starttime, "%Y-%m-%dT%H:%M").timetuple())
+        endtime = request.POST['endtime']
+        endtime = time.mktime(datetime.datetime.strptime(endtime, "%Y-%m-%dT%H:%M").timetuple())
         event = {
             'sender': 'test',
             'title': str(request.POST['title']),
             'content': str(request.POST['message']),
+            'location': str(request.POST['location']),
             'timestamp': int(time.time()),
-            'starttime': str(request.POST['starttime']),
-            'endtime': str(request.POST['endtime']),
+            'starttime': starttime,
+            'endtime': endtime,
         }
 
 
-        Dynamo.initialize().send_bulletin(EventSerializer(event).data)
-        return redirect(createEvent)
+        Dynamo.initialize().send_event(EventSerializer(event).data)
+        return redirect(calendar)
     except Exception as e:
         print("\tERROR\tFailed to create event: " + str(e))
         return redirect(error_event)
 
 def calendar(request):
     #if request.user.is_authenticated():
-    #    events = Dynamo.get_events()
-    return render(request, 'calendar.html')#, {"events": events})
+    events = Dynamo.get_events()
+    return render(request, 'calendar.html', {"events": events})
     #return redirect("../")
 
 

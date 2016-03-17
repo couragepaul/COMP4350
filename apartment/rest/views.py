@@ -39,10 +39,10 @@ class MessageViewSet(viewsets.ViewSet):
             print(e)
             return Response({
                 'Status': 'Fail',
-                'Data Received': request.data})
+                'Received': request.data})
         return Response({
             'Status': 'Success',
-            'Data Received': request.data})
+            'Received': request.data})
 
     @list_route(methods=['post'])
     def mark_read(self, request):
@@ -99,10 +99,10 @@ class BulletinViewSet(viewsets.ViewSet):
             print(e)
             return Response({
                 'Status': 'Fail',
-                'Data Received': request.data})
+                'Received': request.data})
         return Response({
             'Status': 'Success',
-            'Data Received': request.data})
+            'Received': request.data})
 
 class CommentViewSet(viewsets.ViewSet):
     '''
@@ -117,7 +117,7 @@ class CommentViewSet(viewsets.ViewSet):
             print(e)
             return Response({
                 'Status': 'Fail',
-                'Data Received': request.data
+                'Received': request.data
             })
         return Response({
             'Status': 'Success',
@@ -135,10 +135,10 @@ class CommentViewSet(viewsets.ViewSet):
             print(e)
             return Response({
                 'Status': 'Fail',
-                'Data Received': request.data})
+                'Received': request.data})
         return Response({
             'Status': 'Success',
-            'Data Received': request.data})
+            'Received': request.data})
 
 class EventViewSet(viewsets.ViewSet):
     '''
@@ -161,7 +161,7 @@ class EventViewSet(viewsets.ViewSet):
             print(e)
             return Response({
                 'Status': 'Fail',
-                'Data Received': request.data})
+                'Received': request.data})
         return Response({
             'Status': 'Success',
-            'Data Received': request.data})
+            'Received': request.data})

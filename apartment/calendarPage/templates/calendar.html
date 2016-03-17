@@ -23,9 +23,10 @@
     <![endif]-->
 
     <script src="{% static 'js/jquery-1.11.3.min.js' %}" type="text/javascript"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
     <script src="{% static 'js/jquery-1.11.1.min.js' %}" type="text/javascript"></script>
     <script src="{% static 'js/jquery.ui-1.10.4.datepicker.min.js' %}" type="text/javascript"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
 
 </head>
 <body>
@@ -85,11 +86,10 @@
 
 		</script>
         <div id="calendar-foot" align="right" >
-        	<input id="new-event-button" class="btn-primary" onclick="getdate()" data-toggle="modal" data-target="#myModal" type="button" value="+ Create an new event" />
+        	<input id="new-event-button" class="btn-primary" onclick="getdate()" data-toggle="modal" data-target="#myModal" type="button" value="+ Create a new event" />
         </div>
         <input type="text" id="showevent" />
         <script>
-
             function getdate() {
                                   var tt = document.getElementById('datepicker1').value;
 
@@ -103,16 +103,6 @@
                                   var someFormattedDate = mm + '/' + dd + '/' + y;
                                   document.getElementById('get-date').value = someFormattedDate;
                               }
-
-        function getevent(){
-
-                    var eventEvent = document.getElementById('new-event').value;
-                    var eventLocation = document.getElementById('event-location').value;
-                    var eventTime =  document.getElementById('event-time').value;
-                    var eventNotes = document.getElementById('event-notes').value;
-                    var eventDetail =eventEvent + eventLocation + eventTime + eventNotes;
-                    document.getElementById('showevent').value = eventDetail;
-        }
         </script>
 
 
@@ -126,18 +116,19 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <p class="modal-title">Please create your new event</p>
         </div>
-        <div class="modal-body">
-          <input class="event-text" id="get-date" type="text" placeholder="Please click on a specific day"/>
-          <input class="event-text" type="text" id="new-event" placeholder="New Event"/>
-          <input class="event-text" type="text" id="event-location" placeholder="Location"/>
-          <input class="event-text" type="text" id="event-time" placeholder="Time" />
-          <input class="event-text" type="text" id="event-notes" placeholder="Notes" />
-        </div>
-
-        <div class="modal-footer">
-            <button type="button" onclick="getevent()" data-dismiss="modal" class="footer-button save-button btn-primary">Save</button>
-            <button type="button" class="footer-button btn-primary" data-dismiss="modal">Cancel</button>
-        </div>
+        <form action="sendEvent" method="post">{% csrf_token %}
+            <div class="modal-body">
+                <input class="event-text" type="text" name="title" placeholder="New Event"/>
+                <input class="event-text" type="text" name="location" placeholder="Location"/>
+                <input class="event-text" type="datetime-local" name="starttime"/>
+                <input class="event-text" type="datetime-local" name="endtime"/>
+                <input class="event-text" type="text" name="message" placeholder="Notes" />
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="footer-button save-button btn-primary">Save</button>
+                <button type="button" class="footer-button btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
       </div>
 
     </div>

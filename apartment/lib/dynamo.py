@@ -140,7 +140,7 @@ class Dynamo:
     @staticmethod
     def get_events():
         Dynamo.initialize()
-        table = Dynamo.dynamodb.Table('se2_event')
+        table = Dynamo.dynamodb.Table('se2_calendar')
 
         response = table.scan()
         events = list()
@@ -153,7 +153,7 @@ class Dynamo:
     @staticmethod
     def send_event(event):
         Dynamo.initialize()
-        table = Dynamo.dynamodb.Table('se2_bulletin')
+        table = Dynamo.dynamodb.Table('se2_calendar')
 
         response = table.put_item(Item=event)
         return response
