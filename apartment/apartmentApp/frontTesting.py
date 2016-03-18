@@ -32,10 +32,10 @@ class ApartmentLoginTestCase(unittest.TestCase):
 
     def setUp(self):
         # if your browser is chrome,change self.driver = webdriver.Firefox() to the follows
-        chromedriver = "chromedriver.exe"
-        os.environ["webdriver.chrome.driver"] = chromedriver
-        self.driver = webdriver.Chrome(chromedriver)
-        # self.driver = webdriver.Firefox()
+        #chromedriver = "chromedriver.exe"
+        #os.environ["webdriver.chrome.driver"] = chromedriver
+        #self.driver = webdriver.Chrome(chromedriver)
+        self.driver = webdriver.Firefox()
 
     def test_login(self):
         loginSession(self)
@@ -51,10 +51,10 @@ class ApartmentSendMessageTestCase(unittest.TestCase):
     """Test Case for sending messages to a test user"""
     def setUp(self):
         # if your browser is chrome,change self.driver = webdriver.Firefox() to the follows
-        chromedriver = "chromedriver.exe"
-        os.environ["webdriver.chrome.driver"] = chromedriver
-        self.driver = webdriver.Chrome(chromedriver)
-        # self.driver = webdriver.Firefox()
+        #chromedriver = "chromedriver.exe"
+        #os.environ["webdriver.chrome.driver"] = chromedriver
+        #self.driver = webdriver.Chrome(chromedriver)
+        self.driver = webdriver.Firefox()
         loginSession(self)
 
     def test_sending_messages(self):
@@ -88,10 +88,10 @@ class ApartmentBulletinBoardTestCase(unittest.TestCase):
 
     def setUp(self):
         # if your browser is chrome,change self.driver = webdriver.Firefox() to the follows
-        chromedriver = "chromedriver.exe"
-        os.environ["webdriver.chrome.driver"] = chromedriver
-        self.driver = webdriver.Chrome(chromedriver)
-        # self.driver = webdriver.Firefox()
+        #chromedriver = "chromedriver.exe"
+        #os.environ["webdriver.chrome.driver"] = chromedriver
+        #self.driver = webdriver.Chrome(chromedriver)
+        self.driver = webdriver.Firefox()
         loginSession(self)
 
     def test_jump_from_bulletin_board_to_create_new_bulletin_page(self):
@@ -132,10 +132,10 @@ class ManagerSettingTestCase(unittest.TestCase):
 
     def setUp(self):
         # if your browser is chrome,change self.driver = webdriver.Firefox() to the follows
-        chromedriver = "chromedriver.exe"
-        os.environ["webdriver.chrome.driver"] = chromedriver
-        self.driver = webdriver.Chrome(chromedriver)
-        # self.driver = webdriver.Firefox()
+        #chromedriver = "chromedriver.exe"
+        #os.environ["webdriver.chrome.driver"] = chromedriver
+        #self.driver = webdriver.Chrome(chromedriver)
+        self.driver = webdriver.Firefox()
         loginSession(self)
 
     def test_create_new_tenant(self):
@@ -178,3 +178,137 @@ class ManagerSettingTestCase(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
+class ApartmentCalendarTestCase(unittest.TestCase):
+    def setUp(self):
+        # if your browser is chrome,change self.driver = webdriver.Firefox() to the follows
+        #chromedriver = "chromedriver.exe"
+        #os.environ["webdriver.chrome.driver"] = chromedriver
+        #self.driver = webdriver.Chrome(chromedriver)
+        self.driver = webdriver.Firefox()
+        loginSession(self)
+
+    def test_create_an_event(self):
+        self.driver.get(baseURL +"/calendar")
+        createEventButton = self.driver.find_element_by_id("new-event-button")
+        createEventButton.click()
+        setEvent = self.driver.find_element_by_name("title")
+        setEvent.send_keys("tests1")
+        setLocation = self.driver.find_element_by_name("location")
+        setLocation.send_keys("UC")
+        setStartTime = self.driver.find_element_by_name("starttime")
+        # fill date with 03/18/2016
+        setStartTime.send_keys("03182016")
+        #press tab to shift focus on time
+        setStartTime.send_keys(Keys.TAB)
+        #fill time with 02:00pm
+        setStartTime.send_keys("0200PM")
+        setEndTime = self.driver.find_element_by_name("endtime")
+        setEndTime.send_keys("03242016")
+        setEndTime.send_keys(Keys.TAB)
+        setEndTime.send_keys("1100AM")
+        setNotes = self.driver.find_element_by_name("message")
+        setNotes.send_keys("testTestTest from notes")
+        saveButton = self.driver.find_element_by_id("saveEventButton")
+        saveButton.click()
+
+    def test_create_event_no_end_time(self):
+        self.driver.get(baseURL+"/calendar")
+        createEventButton = self.driver.find_element_by_id("new-event-button")
+        createEventButton.click()
+        setEvent = self.driver.find_element_by_name("title")
+        setEvent.send_keys("tests1")
+        setLocation = self.driver.find_element_by_name("location")
+        setLocation.send_keys("UC")
+        setStartTime = self.driver.find_element_by_name("starttime")
+        # fill date with 03/18/2016
+        setStartTime.send_keys("03182016")
+        #press tab to shift focus on time
+        setStartTime.send_keys(Keys.TAB)
+        #fill time with 02:00pm
+        setStartTime.send_keys("0200PM")
+        setNotes = self.driver.find_element_by_name("message")
+        setNotes.send_keys("testTestTest from notes")
+        saveButton = self.driver.find_element_by_id("saveEventButton")
+        saveButton.click()
+
+    def test_create_event_no_title(self):
+        self.driver.get(baseURL +"/calendar")
+        createEventButton = self.driver.find_element_by_id("new-event-button")
+        createEventButton.click()
+        setLocation = self.driver.find_element_by_name("location")
+        setLocation.send_keys("UC")
+        setStartTime = self.driver.find_element_by_name("starttime")
+        # fill date with 03/18/2016
+        setStartTime.send_keys("03182016")
+        #press tab to shift focus on time
+        setStartTime.send_keys(Keys.TAB)
+        #fill time with 02:00pm
+        setStartTime.send_keys("0200PM")
+        setEndTime = self.driver.find_element_by_name("endtime")
+        setEndTime.send_keys("03242016")
+        setEndTime.send_keys(Keys.TAB)
+        setEndTime.send_keys("1100AM")
+        setNotes = self.driver.find_element_by_name("message")
+        setNotes.send_keys("testTestTest from notes")
+        saveButton = self.driver.find_element_by_id("saveEventButton")
+        saveButton.click()
+
+    def test_create_event_no_location(self):
+        self.driver.get(baseURL +"/calendar")
+        createEventButton = self.driver.find_element_by_id("new-event-button")
+        createEventButton.click()
+        setEvent = self.driver.find_element_by_name("title")
+        setEvent.send_keys("tests1")
+        setStartTime = self.driver.find_element_by_name("starttime")
+        # fill date with 03/18/2016
+        setStartTime.send_keys("03182016")
+        #press tab to shift focus on time
+        setStartTime.send_keys(Keys.TAB)
+        #fill time with 02:00pm
+        setStartTime.send_keys("0200PM")
+        setEndTime = self.driver.find_element_by_name("endtime")
+        setEndTime.send_keys("03242016")
+        setEndTime.send_keys(Keys.TAB)
+        setEndTime.send_keys("1100AM")
+        setNotes = self.driver.find_element_by_name("message")
+        setNotes.send_keys("testTestTest from notes")
+        saveButton = self.driver.find_element_by_id("saveEventButton")
+        saveButton.click()
+
+
+    def test_jump_from_home_page_to_calendar(self):
+        self.driver.get(baseURL + "/home")
+        calendarButton = self.driver.find_element_by_link_text("Calendar")
+        calendarButton.click()
+
+    def test_jump_from_calendar_to_bulletin_page(self):
+        self.driver.get(baseURL + "/calendar")
+        bulletinButton = self.driver.find_element_by_link_text("Bulletin")
+        bulletinButton.click()
+
+    def test_click_prev_button_to_last_month(self):
+        self.driver.get(baseURL + "/calendar")
+        prevButton = self.driver.find_element_by_link_text("Prev")
+        prevButton.click()
+
+    def test_find_a_specific_month_year_from_menus(self):
+        self.driver.get(baseURL + "/calendar")
+        monthButton = self.driver.find_element_by_class_name("ui-datepicker-month")
+        monthButton.click()
+        # select a month by clicking arrow
+        monthButton.send_keys(Keys.ARROW_DOWN);
+        monthButton.send_keys(Keys.ARROW_DOWN);
+        monthButton.send_keys(Keys.ARROW_DOWN);
+        yearButton = self.driver.find_element_by_class_name("ui-datepicker-year")
+        yearButton.click()
+        # select a specific year
+        monthButton.send_keys(Keys.ARROW_DOWN);
+        monthButton.send_keys(Keys.ARROW_DOWN);
+        monthButton.send_keys(Keys.ARROW_DOWN);
+        monthButton.send_keys(Keys.ARROW_DOWN);
+        monthButton.send_keys(Keys.ARROW_DOWN);
+
+    def test_view_event(self):
+        self.driver.get(baseURL + "/calendar")
+        specificDate = self.driver.find_element_by_link_text("2")
+        specificDate.click()
