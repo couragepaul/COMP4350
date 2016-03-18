@@ -39,6 +39,7 @@ def sendEvent(request):
 def calendar(request):
     #if request.user.is_authenticated():
     eventList = Dynamo.get_events()
+    print (dir(eventList[2]))
     return render(request, 'calendar.html', {"eventList": eventList})
     #return redirect("../")
 

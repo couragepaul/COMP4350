@@ -82,7 +82,8 @@
             {% for event in eventList %}
                 <script>
                     var startDate = new Date({{event.starttime}}*1000);
-                    events.push({ Title: "{{event.title}}", Date: new Date('03/01/2016'), Test: startDate });
+                    var endDate = new Date({{event.endtime}}*1000);
+                    events.push({ Title: "{{event.title}}", Date: startDate, End: endDate, Content: "{{event.content}}" });
                 </script>
             {% endfor %}
         {% endif %}
@@ -98,8 +99,16 @@
 
     		    beforeShowDay: function(date) {
                     var result = [true, '', null];
+                    var end = new Date(date);
+                    end.setHours(23,59,59);
                     var matching = $.grep(events, function(event) {
-                        return event.Date.valueOf() === date.valueOf();
+                        if (event.Date.valueOf() >= date.valueOf() && event.Date.valueOf() <= end.valueOf()) {
+                            return true;
+                        }
+                        else if (event.Date.valueOf() <= date.valueOf() && event.End.valueOf() >= date.valueOf()) {
+                            return true;
+                        }
+                        return false;
                     });
 
                     if (matching.length) {
@@ -111,21 +120,27 @@
                 onSelect: function(dateText) {
                     var date,
                         selectedDate = new Date(dateText),
+                        end = new Date(dateText),
                         i = 0,
                         event = null;
+                        end.setHours(23,59,59);
 
                     /* Determine if the user clicked an event: */
                     while (i < events.length && !event) {
                         date = events[i].Date;
+                        endDate = events[i].End;
 
-                        if (selectedDate.valueOf() === date.valueOf()) {
+                        if (date.valueOf() >= selectedDate.valueOf() && date.valueOf() <= end.valueOf() ) {
+                            event = events[i];
+                        }
+                        else if (selectedDate.valueOf() >= date.valueOf() && selectedDate.valueOf() <= endDate.valueOf()) {
                             event = events[i];
                         }
                         i++;
                     }
                     if (event) {
                         /* If the event is defined, perform some action here; show a tooltip, navigate to a URL, etc. */
-                        alert(event.Test);
+                        alert(event.Title + "\nStart: " + event.Date + "\nEnd:   " + event.End + "\nDetails: " + event.Content);
                     }
                 }
             });
