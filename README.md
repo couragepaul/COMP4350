@@ -5,3 +5,6 @@ The Apartment Management Application is an Android based application with the go
 
 
 http://apartment-app.pfsa2harbh.us-west-2.elasticbeanstalk.com/apartmentApp/
+
+Link to android repo
+https://github.com/j-dasilva/COMP4350-Android 

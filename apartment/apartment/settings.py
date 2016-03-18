@@ -25,7 +25,10 @@ SECRET_KEY = '29bwv8#)6dp#$_djc3sl9c&!kome16hiov&)=2o#p8t24#bo)i'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '.localhost',
+    '.apartment-app.pfsa2harbh.us-west-2.elasticbeanstalk.com'
+]
 
 
 # Application definition
@@ -123,7 +126,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))[0:-10]  # Remove trailing "apartment/"
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+
+STATICFILES_DIRS = [
+    os.path.join(PROJECT_ROOT, 'bulletin/static'),
+    os.path.join(PROJECT_ROOT, 'messaging/static'),
+    os.path.join(PROJECT_ROOT, 'rest/static')
+]
+
+# Rest Settings
 
 REST_FRAMEWORK = {
     'PAGE_SIZE': 10,
@@ -132,5 +145,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     )
 }
+
+# Testing Options
 
 CREATE_STUBS = False
