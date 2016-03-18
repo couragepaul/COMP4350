@@ -170,3 +170,47 @@ Thursday Feb 25
 	- all discussions during this meetings was to just go over to make sure everything that was assigned on tuesday to each member is fine
 	- there were no problems as of this meeting so everything should be fine going ahead
 	- nothing to add in the meeting minutes
+
+Tuesday March 1st
+- Members attended meeting: Joshua Da Silva, Timothy Keding, Nick Thiessen, Qing Cao, Courage Paul
+- Discussion about the next iteration
+	- Division of labour goes as follows
+		Android
+		- Josh is working on rest API
+		- Jourey and Nick are working on the android interface
+		Calendar Feature
+		- Qing and Tim are in charge of this
+		Testing
+		- Courage is taking care of the testing
+		Planning and Documentation
+		- Jourey is doing the documentation for the planning documents
+
+Tuesday March 8th
+- Informal meeting
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- this meeting was mostly just a catch up to ensure that everyone was doing as they were assigned
+
+Thursday March 10
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Discussion about current state of affairs and what other things are required
+	- Calendar application is getting there
+	- The REST API and android interface are getting sorted out
+	- Testing is proceeding as planned
+	- No apparent problems so far
+
+Tuesday March 15
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Discussion about what is left to do for the iteration
+	- Some features in the planning document were mistyped as being complete, when they were instead moved to be out of scope
+	- Please note that member contributions for each part of the iteration are in their respective sections since the first iteration, each member is assigned their tasks as we discuss in the meeting and that is what they are responsible for
+
+Thursday March 17
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Final thoughts and discussions before iteration deadline
+	- The Rest API and the android GUI still need to be attached together
+	- The calendar feature needs to be finished
+	- Everything must be redeployed on the AWS
+	- The android part of the application was decided to be another REPO in which we develop only for android there
+		- there will be a link from the main repo to this one for it to be made
+		- This decision was made to ensure that the codebases did not get mixed up alongside each other
+		- All code was moved from personal repositories to this one over the past few days, and any work coming forward will be there

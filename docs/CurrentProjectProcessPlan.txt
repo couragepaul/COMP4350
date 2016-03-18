@@ -2,19 +2,11 @@ Apartment Manager Application Current Status and Future plan
 member contribution for iteration 2 is in the meeting minutes
 
 This is the current status of our project so far in our big user stories
-Messages
-all features listed below for messages are implemented
-Bulletin Board
-all features except for sorting as marked below has been implemented
-Users
-Only the creation and deletion of users has been implemented
-a full list of completed features for iteration 2 can be found below
+All features listed below are complete
+New additions and changes have been marked as such
+Features that have been deemed out of scope are on the bottom
 
 Messages feature list:
-Message all residents
-Manager can send messages to all residents that they are responsible for.
-COMPLETE
- 
 Message individuals
 Manager can send messages to individuals that they are responsible for.
 COMPLETE
@@ -48,28 +40,45 @@ COMPLETE
 Front-end (New as of Iteration 2)
 Create a front-end for our project and deploy it to a web server. In addition also add a REST API so that the next iteration can be completed by the next group
 COMPLETE
- 
-Below are the list of features that will be implemented in the next iteration (since iteration 3 is for someone else’s project, this will be iteration 4)
 
-Bulletin: Overall Priority 1
-Sorting Bulletin - Marked as out of scope for iteration 2, moved to later iteration
+Calendar Feature List(All new as of iteration 3)
+    Add to calendar
+A scheduler that allows specific events in the apartment to be tracked, such as rent, or a barbecue.
+Estimated hours/cost: 15-20
+COMPLETE
+
+Front-end
+Allow the user to see a visual representation of the calendar that the manager or that they have added events for.
+Estimated hours/cost: 20-25
+COMPLETE
+
+Android Feature(New as of iteration 3)
+    Front-end
+Application must have an android application in which the user can do similar things that they can do on the web application.
+Estimated hours/cost: 20-25
+COMPLETE
+ 
+Below are the list of features that are out of scope for iteration 3. These are no longer promised features, but if time permits some of them might be in the last iteration.
+
+Bulletin features:
+Sorting Bulletin
 Residents are capable of sorting the bulletin board in multiple ways. For example, sorting by resident, or by date added.
 Estimated hours: 5
 Priority: 1
  
-Users: Overall Priority - 2
-Notification to users
+Users features: 
+    Notification to users
 Residents are able to receive notifications whenever a new bulletin has been posted.
 Estimated hours/cost: 5-10
-Priority: 3
- 
-Add to calendar
-A scheduler that allows specific events in the apartment to be tracked, such as rent, or a barbecue.
-Estimated hours/cost: 15-20
-Priority: 1
- 
+OUT OF SCOPE
+
 Check rent
 Residents are able to be notified when their rent is due, the amount due, and see their rent on the calendar.
 Estimated hours/cost: 5-10
-Priority: 2
+OUT OF SCOPE
 
+Message features: 
+Message all residents - This feature was misplaced as being complete, moved to out of scope
+Manager can send messages to all residents that they are responsible for.
+Estimated hours/cost: 5-10
+OUT OF SCOPE
