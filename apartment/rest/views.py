@@ -85,7 +85,9 @@ class BulletinViewSet(viewsets.ViewSet):
     def list(self, request):
         bulletin_list = Dynamo.get_bulletins()
         serializer = BulletinSerializer(bulletin_list, many=True)
-        return Response(serializer.data)
+        return Response({
+                'Status': 'Success',
+                'Response': serializer.data})
 
     def create(self, request):
         try:
@@ -147,7 +149,10 @@ class EventViewSet(viewsets.ViewSet):
     def list(self, request):
         event_list = Dynamo.get_events()
         serializer = EventSerializer(event_list, many=True)
-        return Response(serializer.data)
+        return Response({
+                'Status': 'Success',
+                'Response': serializer.data
+            })
 
     def create(self, request):
         try:
