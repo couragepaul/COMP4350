@@ -85,7 +85,6 @@ a:-webkit-any-link{
 	background-color:white;
 	border:1px solid #DFDFDD;
 	background-image:none;
-
 	
 }
  
@@ -156,3 +155,6 @@ a:-webkit-any-link{
 	height:auto;
     outline:none;
 	}
+td.highlight {
+    background-color: red;
+}

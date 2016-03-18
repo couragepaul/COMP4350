@@ -76,19 +76,35 @@
 
   <div id="datepicker1"></div><!-- end datepicker1 -->
   		<script>
+  		    var events = [
+                { Title: "Five K for charity", Date: new Date("02/13/2016") },
+                { Title: "Dinner", Date: new Date("02/25/2016") },
+                { Title: "Meeting with manager", Date: new Date("03/01/2016") }
+            ];
+
    			$('#datepicker1').datepicker({
         		inline: true,
 				autoSize: true,
         		firstDay: 1,
         		showOtherMonths: true,
-        		dayNamesMin: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    			});
+        		dayNamesMin: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
 
+    		    beforeShowDay: function(date) {
+                    var result = [true, '', null];
+                    var matching = $.grep(events, function(event) {
+                        return event.Date.valueOf() === date.valueOf();
+                    });
+
+                    if (matching.length) {
+                        result = [true, 'highlight', null];
+                    }
+                    return result;
+                }
+            });
 		</script>
         <div id="calendar-foot" align="right" >
         	<input id="new-event-button" class="btn-primary" onclick="getdate()" data-toggle="modal" data-target="#myModal" type="button" value="+ Create a new event" />
         </div>
-        <input type="text" id="showevent" />
         <script>
             function getdate() {
                                   var tt = document.getElementById('datepicker1').value;
