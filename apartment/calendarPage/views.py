@@ -38,8 +38,8 @@ def sendEvent(request):
 
 def calendar(request):
     #if request.user.is_authenticated():
-    events = Dynamo.get_events()
-    return render(request, 'calendar.html', {"events": events})
+    eventList = Dynamo.get_events()
+    return render(request, 'calendar.html', {"eventList": eventList})
     #return redirect("../")
 
 
@@ -51,11 +51,11 @@ def createEvent(request):
 
 def viewEvent(request):
     if request.user.is_authenticated():
-        event = Dynamo.get_event_by_reference(
+        eventList = Dynamo.get_event_by_reference(
             request.POST['EventSender'] + ':' + request.POST['EventTimestamp']
         )
 
-        return render(request, 'viewEvent.html', {'event': event})
+        return render(request, 'viewEvent.html', {'eventList': eventList})
     return redirect("../")
 
 def error_event():
