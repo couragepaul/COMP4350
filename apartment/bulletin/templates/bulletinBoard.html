@@ -14,16 +14,20 @@
 
     <title>Bulletin Board</title>
 
+
     <!-- Bootstrap Core CSS -->
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
     <!-- Bootstrap Core JavaScript -->
     <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="{% static 'bulletin/3-col-portfolio.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'bulletinBoard/modal.css' %}" />
+
 
         <!-- jQuery -->
     <script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -89,7 +93,7 @@
             <div class="col-lg-10">
                 <h1 class="page-header">
                     <font color="white">Bulletin Board</font>
-                    <form action="createBulletin" method="post">{% csrf_token %}<button class="btn btn-default" type="submit">New Bulletin</button></form>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">Create New Bulletin</button>
                 </h1>
 
             </div>
@@ -120,8 +124,33 @@
           <p>No bulletins are available.</p>
         {% endif %}
 
+        <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <p class="modal-title">Create New Bulletin</p>
+        </div>
+        <form action="sendBulletin" method="post">{% csrf_token %}
+            <div class="modal-body">
+                <label><input class="event-text" type="text" name="subject" placeholder="New Bulletin"/></label>
+                <label><textarea class="FormElement" name="message" placeholder="Notes" cols="43" rows="4"></textarea></label>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" id="saveEventButton" class="footer-button save-button btn-primary">Save</button>
+                <button type="button" id="cancelEventButton" class="footer-button btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
     </div>
     <!-- /.container -->
+
 </body>
 
 </html>

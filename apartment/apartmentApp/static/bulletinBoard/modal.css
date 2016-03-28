@@ -1,0 +1,35 @@
+#new-event-button{
+	border:none;
+	color:white;
+    outline:none;
+    background-color:#9f794d;
+	}
+
+.modal-content{
+	height:auto;
+	width:400px;
+	font-size:14px;
+	}
+.modal-header{
+	height:30px;
+	width:400px;
+	padding-top:0.5px;
+	padding-bottom:0.5px;
+	background-color:#9f794d;
+	color:white;
+	}
+.modal-body{
+	height:auto;
+	width:400px;
+	}
+.modal-footer{
+	background-color:#9f794d;
+	height:30px;
+	padding-top:0px;
+	padding-bottom:0px;
+	}
+.event-text{
+	align:center;
+	width:370px;
+	margin-top:10px;
+	}

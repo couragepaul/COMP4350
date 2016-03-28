@@ -24,7 +24,7 @@ def sendBulletin(request):
 
 
         Dynamo.initialize().send_bulletin(BulletinSerializer(bulletin).data)
-        return redirect(createBulletin)
+        return redirect(bulletinBoard)
     except Exception as e:
         print("\tERROR\tFailed to create bulletin: " + str(e))
         return redirect(error_bulletin)
