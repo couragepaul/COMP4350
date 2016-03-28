@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load staticfiles %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -12,6 +13,7 @@
     <title>Sticky Footer Navbar Template for Bootstrap</title>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+      <link rel="stylesheet" type="text/css" href="{% static 'backgrounds/main_background.css' %}" />
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -74,10 +76,10 @@
 
     <!-- Begin page content -->
     <div class="container">
-        <h3>From Manager:</h3>
-        <h4><script>
+        <h3><font color="white">From Manager:</font></h3>
+        <h4><font color="white"><script>
           document.write("{{msg.timestamp}}");
-        </script></h4>
+        </script></font></h4>
         <div class="panel panel-default">
             <div class="panel-body">
                 <p class="lead"><script>
@@ -89,7 +91,7 @@
 
     <footer class="footer">
       <div class="container">
-        <p class="text-muted">If you have any questions, please ask your manager.</p>
+        <p class="text-muted"><font color="white">If you have any questions, please ask your manager.</font></p>
       </div>
     </footer>
 

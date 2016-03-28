@@ -50,7 +50,7 @@ a:-webkit-any-link{
     padding-bottom: 10px;
     border-bottom: 1px solid #d6d6d6;
 	background-image:none;
-	background-color:#0C62B5;
+	background-color:#8883A7;
 }
  
 .ui-datepicker-title { text-align: center; }
@@ -76,7 +76,7 @@ a:-webkit-any-link{
     font-weight: normal;
    	background-color:white;
     border:1px solid #DFDFDD;
-    color:#0C62B5;
+    color:#8883A7;
 }
 
 .ui-datepicker-calendar td {
@@ -95,7 +95,7 @@ a:-webkit-any-link{
  	height:inherit;
 	width:98px;
     text-decoration: none;
-    color: #0C62B5;
+    color: #8883A7;
     border: none;
 	background-color:transparent;
 	background-image:none;
@@ -111,7 +111,7 @@ a:-webkit-any-link{
 #calendar-foot{
 	height:25px;
 	width:700px;
-	background-color:#0C62B5;
+	background-color:#8883A7;
 	
 	}
 
@@ -119,6 +119,7 @@ a:-webkit-any-link{
 	border:none;
 	color:white;
     outline:none;
+    background-color:#8883A7;
 	}
 
 .modal-content{
@@ -131,7 +132,7 @@ a:-webkit-any-link{
 	width:400px;
 	padding-top:0.5px;
 	padding-bottom:0.5px;
-	background-color:#0C62B5;
+	background-color:#8883A7;
 	color:white;
 	}
 .modal-body{
@@ -139,7 +140,7 @@ a:-webkit-any-link{
 	width:400px;
 	}
 .modal-footer{
-	background-color:#0C62B5;
+	background-color:#8883A7;
 	height:30px;
 	padding-top:0px;
 	padding-bottom:0px;
