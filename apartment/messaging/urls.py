@@ -7,6 +7,5 @@ urlpatterns = [
     url(r'^sentMessageView', views.sent_message_view, name='sentMessageView'),
     url(r'^sendMessage', views.send_message, name='sendMessage'),
     url(r'^errorMessage', views.error_message, name='errorMessage'),
-    url(r'^(\w+)/$', views.UserMessages.as_view(), name='userMessages'),
-    url(r'^(\w+)/message', views.message, name='message'),
+    url(r'^message', views.message, name='message'),
 ]

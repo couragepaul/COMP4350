@@ -105,5 +105,52 @@
     </div>
         </form>
         </div>
+
+<div class="container">
+  <h2><font color="white">Messages</font></h2>
+  <table class="table" >
+    <thead>
+      <tr>
+        <th><font color="white">Date</font></th>
+        <th><font color="white">Message</font></th>
+          <th><font color="white">Urgency</font></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% if message_list %}
+          {% for message in message_list %}
+          {# active = white, info = blue, warning = orange, danger = red, success = green #}
+      <form id="{{ message.timestamp }}" action="message" method="post">{% csrf_token %}
+          {% if message.read == False %}
+            <tr class="info" onclick="document.getElementById('{{ message.timestamp }}').submit()">
+          {% else %}
+          {% if message.urgency == "1" %}
+              <tr class="danger" onclick="document.getElementById('{{ message.timestamp }}').submit()">
+              {% else %}
+              {% if message.urgency == "2" %}
+              <tr class="warning" onclick="document.getElementById('{{ message.timestamp }}').submit()">
+              {% else %}
+              <tr class="active" onclick="document.getElementById('{{ message.timestamp }}').submit()">
+              {% endif %}
+              {% endif %}
+          {% endif %}
+            {# date #}
+            <td>{{message.time}}</td>
+            {# Message #}
+            <td>{{message.content}}</td>
+            {# Urgency #}
+            <td>{{message.urgency}}</td>
+          </tr>
+          <input name="messageRecipient" type="hidden" value="{{ message.recipient }}" />
+          <input name="messageTimestamp" type="hidden" value="{{ message.timestamp }}" />
+      </form>
+          {% endfor %}
+      {% else %}
+          <p>No messages are available.</p>
+      {% endif %}
+    </tbody>
+  </table>
+</div>
+
 </body>
 </html>

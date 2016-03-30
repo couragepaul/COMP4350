@@ -13,7 +13,12 @@ from lib.dynamo import Dynamo
 
 def create_message_view(request):
     if request.user.is_authenticated():
-        return render(request,'createMessage.html')
+        user = get_object_or_404(User, username=request.user.username)
+        messages = Dynamo.get_messages_by_recipient(user.username)
+        if request.user.is_staff:
+            return render(request,'createMessage.html', {"message_list": messages})
+        else:
+            return render(request, 'userMessages.html', {"message_list": messages})
     return redirect("../apartmentApp")
 
 
@@ -48,27 +53,13 @@ def error_message(request):
     return HttpResponse(html)
 
 
-def message(request, message):
+def message(request):
     message = dict()
     message['recipient'] = request.POST['messageRecipient']
     message['timestamp'] = int(request.POST['messageTimestamp'])
 
     message = Dynamo.get_message(message)
     return render(request, 'message.html', {"msg": message})
-
-
-class UserMessages(generic.ListView):
-    context_object_name = 'message_list'
-    template_name = 'userMessages.html'
-
-    def get_queryset(self):
-        user = get_object_or_404(User, username=self.args[0])
-        messages = Dynamo.get_messages_by_recipient(user.username)
-        # for msg in messages:
-        #     msg["time"] = time.strftime("%a, %d %b %Y %H:%M:%S", time.localtime(msg["timestamp"]))
-        #     msg["timestamp"] = str(msg["timestamp"])
-        #     msg["urgency"] = str(msg["urgency"])
-        return messages
 
 
 
