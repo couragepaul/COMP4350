@@ -77,9 +77,9 @@
     <!-- Begin page content -->
     <div class="container">
         <h3><font color="white">From Manager:</font></h3>
-        <h4><font color="white"><script>
-          document.write("{{msg.timestamp}}");
-        </script></font></h4>
+        <h4><font color="white"><script>var a = new Date({{msg.timestamp}} * 1000); document.write(a)
+        </script>
+        </font></h4>
         <div class="panel panel-default">
             <div class="panel-body">
                 <p class="lead"><script>

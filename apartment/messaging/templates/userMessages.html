@@ -82,7 +82,7 @@
               {% endif %}
           {% endif %}
             {# date #}
-            <td>{{message.time}}</td>
+            <td><script>var a = new Date({{message.timestamp}} * 1000); document.write(a)</script></td>
             {# Message #}
             <td>{{message.content}}</td>
             {# Urgency #}

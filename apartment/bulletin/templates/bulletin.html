@@ -93,7 +93,7 @@
             document.write("{{bulletin.sender}}")
         </script></font></h3>
         <h4><font color="white"><script>
-          document.write("{{bulletin.time}}");
+          var a = new Date({{bulletin.timestamp}} * 1000); document.write(a)
         </script></font></h4>
         <div class="panel panel-default">
             <div class="panel-body">
@@ -118,7 +118,7 @@
                         <img src="http://lorempixel.com/50/50/people/6" />
                     </div>
                     <div class="commentText">
-                        <p class=""><script>document.write("{{comment.content}}")</script></p> <span class="date sub-text"><script>document.write("{{comment.timestamp}}")</script></span>
+                        <p class=""><script>document.write("{{comment.content}}")</script></p> <span class="date sub-text"><script>var a = new Date({{comment.timestamp}} * 1000); document.write(a)</script></span>
                     </div>
                 </li>
                 {% endfor %}
