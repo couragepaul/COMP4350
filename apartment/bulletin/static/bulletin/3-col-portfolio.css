@@ -21,7 +21,7 @@ footer {
 
 #contentLimit{
     display:inline-block;
-    max-width: 120px;
+    max-width: 160px;
     white-space: nowrap;
     overflow:hidden !important;
     text-overflow: ellipsis;

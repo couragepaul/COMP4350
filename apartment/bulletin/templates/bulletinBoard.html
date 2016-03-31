@@ -102,24 +102,28 @@
 
         {% if bulletin_list %}
             {% for bulletin in bulletin_list %}
-            <form action="viewBulletin" method="post">{% csrf_token %}
+
+            <form action="viewBulletin" method="post" id="{{ bulletin.timestamp }}">{% csrf_token %}
                 <input name="bulletinSender" type="hidden" value="{{ bulletin.sender }}" />
                 <input name="bulletinTimestamp" type="hidden" value="{{ bulletin.timestamp }}" />
-            <div class="col-md-3 portfolio-item" >
-                <a>
-                    <img class="img-responsive" src="http://placehold.it/700x400" alt="">
-                </a>
+                <div class="col-md-3 portfolio-item viewbulletin" onclick="document.getElementById('{{ bulletin.timestamp }}').submit();">
 
-                <h3>
-                    <a id="subjectLimit" style="text-align:left;"><script>document.write("{{bulletin.subject}}")</script>
+                    <a>
+                        <img class="img-responsive" src="http://placehold.it/700x400" alt="">
                     </a>
-                </h3>
-                <p id="contentLimit"><script>document.write("{{bulletin.content}}")</script></p>
-                <span style="float:right;"><button class="btn btn-default" type="submit">Details</button></span>
+
+                    <h3>
+                        <a id="subjectLimit" style="text-align:left;"><script>document.write("{{bulletin.subject}}")</script>
+                        </a>
+                    </h3>
+                    <p id="contentLimit"><script>document.write("{{bulletin.content}}")</script></p>
 
 
-            </div>
+                </div>
+
             </form>
+
+
             {% endfor %}
         {% else %}
           <p>No bulletins are available.</p>
