@@ -111,11 +111,12 @@
                 </a>
 
                 <h3>
-                    <a style="text-align:left;"><script>document.write("{{bulletin.subject}}")</script>
-                    <span style="float:right;"><button class="btn btn-default" type="submit">Details</button></span>
+                    <a id="subjectLimit" style="text-align:left;"><script>document.write("{{bulletin.subject}}")</script>
                     </a>
                 </h3>
-                <p><script>document.write("{{bulletin.content}}")</script></p>
+                <p id="contentLimit"><script>document.write("{{bulletin.content}}")</script></p>
+                <span style="float:right;"><button class="btn btn-default" type="submit">Details</button></span>
+
 
             </div>
             </form>

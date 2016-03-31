@@ -18,3 +18,19 @@ body {
 footer {
     margin: 50px 0;
 }
+
+#contentLimit{
+    display:inline-block;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+}
+
+#subjectLimit{
+    display:inline-block;
+    max-width: 160px;
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+}
