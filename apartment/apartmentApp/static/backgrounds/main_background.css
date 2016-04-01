@@ -7,3 +7,13 @@ body {
 .btn-block {
     background-color: #8883A7;
 }
+
+#messageLimit{
+
+    display:inline-block;
+    width: 1000px;
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+}
+
