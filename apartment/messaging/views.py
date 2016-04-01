@@ -11,7 +11,7 @@ from rest.serializers import MessageSerializer
 from lib.dynamo import Dynamo
 
 
-def create_message_view(request):
+def message_view(request):
     if request.user.is_authenticated():
         user = get_object_or_404(User, username=request.user.username)
         messages = Dynamo.get_messages_by_recipient(user.username)
