@@ -3,7 +3,7 @@ import unittest
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 
-baseURL = "http://apartment-app.pfsa2harbh.us-west-2.elasticbeanstalk.com/apartmentApp"
+baseURL = "http://apartment-app.pfsa2harbh.us-west-2.elasticbeanstalk.com/"
 
 def loginSession(self):
     #make sure we are in the home page -- uncomment if you want localhost testing
