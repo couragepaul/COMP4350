@@ -91,7 +91,15 @@
                   document.write(formattedTime)</script>
             </td>
             {# Message #}
-            <td id="messageLimit">{{message.content}}</td>
+            <td>
+            <script>
+            var limitChar = "{{ message.content }}";
+            limitChar = limitChar.substr(0,200);
+            if(limitChar.length == 200){
+              limitChar += " ...(more)";
+            }
+            document.write(limitChar);
+            </script></td>
             {# Urgency #}
             <td>{{message.urgency}}</td>
           </tr>

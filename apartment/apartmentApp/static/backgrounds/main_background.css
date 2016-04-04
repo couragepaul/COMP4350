@@ -1,5 +1,5 @@
 body {
-    background: ##dee3e4;
+    background: #dee3e4;
     background-image: url("http://i.imgur.com/psIPQxe.png"), url("http://i.imgur.com/fGwxv35.png");
     background-repeat: repeat-x, repeat;
 }
@@ -8,12 +8,7 @@ body {
     background-color: #8883A7;
 }
 
-#messageLimit{
 
-    display:inline-block;
-    width: 1000px;
-    white-space: nowrap;
-    overflow:hidden !important;
-    text-overflow: ellipsis;
-}
+
+
 
