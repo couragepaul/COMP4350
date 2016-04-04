@@ -20,6 +20,7 @@ a:-webkit-any-link{
 .ui-datepicker{
 	display: none;
     cursor: default;
+    width: 700px;
     text-transform: uppercase;
     font-family: Tahoma;
     font-size: 12px;
@@ -109,6 +110,7 @@ a:-webkit-any-link{
 
 #calendar-foot{
 	height:25px;
+	width: 700px;
 	background-color:#8883A7;
 	
 	}
