@@ -92,14 +92,15 @@
             </td>
             {# Message #}
             <td>
-            <script>
-            var limitChar = "{{ message.content }}";
-            limitChar = limitChar.substr(0,200);
-            if(limitChar.length == 200){
-              limitChar += " ...(more)";
-            }
-            document.write(limitChar);
-            </script></td>
+                <script>
+                    var limitChar = "{{ message.content }}";
+                    limitChar = limitChar.substr(0,200);
+                    if(limitChar.length == 200){
+                        limitChar += " ...(more)";
+                    }
+                    document.write(limitChar);
+                </script>
+            </td>
             {# Urgency #}
             <td>{{message.urgency}}</td>
           </tr>
