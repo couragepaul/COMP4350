@@ -10,15 +10,17 @@ a:-webkit-any-link{
 	
 
 /* datepicker1 */
+
+
+
 .ui-datepicker {
 	background-color:white;
 
 }
 .ui-datepicker{
 	display: none;
-    width: 700px;
     cursor: default;
- 
+    width: 700px;
     text-transform: uppercase;
     font-family: Tahoma;
     font-size: 12px;
@@ -108,7 +110,7 @@ a:-webkit-any-link{
 
 #calendar-foot{
 	height:25px;
-	width:700px;
+	width: 700px;
 	background-color:#8883A7;
 	
 	}
