@@ -19,7 +19,7 @@ def message_view(request):
             return render(request,'createMessage.html', {"message_list": messages})
         else:
             return render(request, 'userMessages.html', {"message_list": messages})
-    return redirect("../apartmentApp")
+    return redirect("../")
 
 
 def send_message(request):
@@ -45,7 +45,7 @@ def send_message(request):
 def sent_message_view(request):
     if request.user.is_authenticated():
         return render(request,'sentMessage.html')
-    return redirect("../apartmentApp")
+    return redirect("../")
 
 
 def error_message(request):
