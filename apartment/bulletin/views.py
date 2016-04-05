@@ -32,7 +32,7 @@ def sendBulletin(request):
 def sendComment(request):
     try:
         bulletin_reference = request.POST['bulletinSender'] + ':' + request.POST['bulletinTimestamp']
-
+        bulletin = Dynamo.get_bulletin_by_reference(bulletin_reference)
 
         comment = {
             'sender': 'test',
@@ -42,11 +42,12 @@ def sendComment(request):
         }
 
         Dynamo.initialize().send_comment(comment)
-        comments = Dynamo.get_comments(Dynamo.get_bulletin_by_reference(bulletin_reference))
+        comments = Dynamo.get_comments(bulletin)
+
 
         # for comment in comments:
         #     comment["timestamp"] = time.strftime("%a, %d %b %Y %H:%M", time.localtime(comment["timestamp"]))
-        return render(request, 'bulletin.html', {'bulletin': bulletin_reference, 'comment_list':comments})
+        return render(request, 'bulletin.html', {'bulletin': bulletin, 'comment_list':comments})
     except Exception as e:
         print("\tERROR\tFailed to send bulletin comment: " + str(e))
         return redirect(error_comment)
