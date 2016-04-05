@@ -71,24 +71,25 @@
 
 	<!--Page Content -->
 	<div class="container">
+        <div class="jumbotron container">
 
 		<form class="form-horizontal" role="form" method="post" action="sendMessage">
 		{% csrf_token %}
 
     <div class="form-group">
-        <label for="name" class="col-sm-2 control-label"><font color="white">Username</font></label>
+        <label for="name" class="col-sm-2 control-label">Username</label>
         <div class="col-sm-10">
             <input type="text" class="form-control" id="username" name="username" placeholder="username" value="">
         </div>
     </div>
     <div class="form-group">
-        <label for="message" class="col-sm-2 control-label"><font color="white">Message</font></label>
+        <label for="message" class="col-sm-2 control-label">Message</label>
         <div class="col-sm-10">
             <textarea class="form-control" rows="4" name="message"></textarea>
         </div>
     </div>
     <div class="form-group">
-        <label for="name" class="col-sm-2 control-label"><font color="white">Priority</font></label>
+        <label for="name" class="col-sm-2 control-label">Priority</label>
         <div class="col-sm-10">
            <input type="number" name="urgency" id="urgency" value="urgency" /> <br>
         </div>
@@ -104,6 +105,7 @@
         </div>
     </div>
         </form>
+            </div>
         </div>
 
 <div class="container">
@@ -146,7 +148,7 @@
       </form>
           {% endfor %}
       {% else %}
-          <p>No messages are available.</p>
+          <p><font color="white">No messages are available.</font></p>
       {% endif %}
     </tbody>
   </table>
