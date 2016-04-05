@@ -137,7 +137,14 @@
               {% endif %}
           {% endif %}
             {# date #}
-            <td>{{message.time}}</td>
+            <td><script>
+                  var date = new Date({{message.timestamp}} * 1000);
+                  var hours = date.getHours();
+                  var minutes = "0"+date.getMinutes();
+                  var seconds = "0"+date.getSeconds();
+                  var formattedTime = hours + ":" + minutes.substr(-2) + ":" + seconds.substr(-2);
+                  document.write(formattedTime)</script>
+            </td>
             {# Message #}
             <td>{{message.content}}</td>
             {# Urgency #}
