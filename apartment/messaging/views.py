@@ -37,7 +37,7 @@ def send_message(request):
         Dynamo.initialize().send_message(MessageSerializer(to_send).data)
         Dynamo.get_messages_by_recipient(user)
 
-        return redirect(sent_message_view)
+        return redirect(message_view)
     except Exception as e:
         print("\tERROR\tFailed to create message: " + str(e))
         return redirect(error_message)
