@@ -214,3 +214,34 @@ Thursday March 17
 		- there will be a link from the main repo to this one for it to be made
 		- This decision was made to ensure that the codebases did not get mixed up alongside each other
 		- All code was moved from personal repositories to this one over the past few days, and any work coming forward will be there
+
+Thursday March 21
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Discussion about what is left about iteration 4
+	- with the amount of features put into the project already, the team decided that other than fixing some bugs, and fixing some of the features that didn't work as expected, we wouldnt look to actually implementing some of the lesser priority features that were put out of scope in the other iterations
+	- with this, the work was divided:
+		- Qing and Tim will work on the front end and ensure that everything works properly, while also ensuring that the front-end testing works 
+		- Courage will be working on the testing required for the application, and will be fixing the android testing as well
+		- Jourey will be working on the Android part, trying to fix some bugs and also providing some help in the front-testing area
+		- Nick will be working on Android as well, tidying up some of the things that need cleaning
+		- Josh will be working with Jourey and Nick in ensuring that the relative information needed for the android application is properly getting sent and retrieved
+
+Thursday March 28
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- Check in progress for the last iteration
+	- So far people have been working on what is necessary
+	- Qing and Tim's focus has now been put on making sure that the front end part that will be shown in the presentation is working as we intended
+		- a lot of work went to make sure visual bugs were squashed
+	- everyone else's focus will remain the same
+- Presentation will start next week
+	- light discussion on what we should be presenting
+	- consider the 5 minute demo
+	- consider the retrospective
+
+Saturday March 30
+- All members were here for this meeting : Joshua Da Silva, Timothy Keding, Nick Thiessen, Jourey Basco, Qing Cao, Courage Paul
+- This meeting was to discuss the presentation only
+- decision on who will be doing what on the presentation
+	- for the demo, qing will be the one driving the demo, with tim discussing and presenting the demo
+	- for the retrospective, courage and jourey will be giving this part of the presentation, with Tim chiming in as needed
+	- Josh and Nick will be answering any questions that pertain to their part of the project

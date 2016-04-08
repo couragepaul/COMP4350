@@ -57,28 +57,3 @@ Android Feature(New as of iteration 3)
 Application must have an android application in which the user can do similar things that they can do on the web application.
 Estimated hours/cost: 20-25
 COMPLETE
- 
-Below are the list of features that are out of scope for iteration 3. These are no longer promised features, but if time permits some of them might be in the last iteration.
-
-Bulletin features:
-Sorting Bulletin
-Residents are capable of sorting the bulletin board in multiple ways. For example, sorting by resident, or by date added.
-Estimated hours: 5
-Priority: 1
- 
-Users features: 
-    Notification to users
-Residents are able to receive notifications whenever a new bulletin has been posted.
-Estimated hours/cost: 5-10
-OUT OF SCOPE
-
-Check rent
-Residents are able to be notified when their rent is due, the amount due, and see their rent on the calendar.
-Estimated hours/cost: 5-10
-OUT OF SCOPE
-
-Message features: 
-Message all residents - This feature was misplaced as being complete, moved to out of scope
-Manager can send messages to all residents that they are responsible for.
-Estimated hours/cost: 5-10
-OUT OF SCOPE
